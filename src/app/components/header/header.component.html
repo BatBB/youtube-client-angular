@@ -1,1 +1,37 @@
-<p>header works!</p>
+<header class="header">
+  <div class="left-container"></div>
+  <div class="center-container">
+    <a href="" class="logo">
+      <img src="/assets/icons/logo.svg" alt="Logo icon" width="50px" />
+    </a>
+    <div class="search">
+      <input
+        matInput
+        class="search-input"
+        type="text"
+        placeholder="What are you want to find out?"
+      />
+      <button class="search-btn" mat-raised-button color="primary">
+        search
+      </button>
+    </div>
+    <button class="settings">
+      <img
+        src="./assets/icons/search_settings.svg"
+        alt="Settings icon"
+        width="24px"
+        height="24px"
+      />
+    </button>
+  </div>
+  <div class="right-container">
+    <span class="user-name">{{ userName }}</span>
+    <img
+      src="./assets/icons/login.svg"
+      alt="Avatar icon"
+      class="user-avatar"
+      width="24px"
+      height="24px"
+    />
+  </div>
+</header>
