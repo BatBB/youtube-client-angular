@@ -1,4 +1,5 @@
 :host {
+  height: 80px;
   width: 100%;
 }
 
@@ -46,7 +47,11 @@
 
 .left-container,
 .right-container {
-  width: 100px;
+  width: 110px;
+}
+
+.left-container {
+  visibility: hidden;
 }
 
 .right-container {
@@ -55,4 +60,6 @@
 
 .settings {
   border: none;
+  cursor: pointer;
+  padding: 0;
 }

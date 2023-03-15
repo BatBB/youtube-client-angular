@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   userName = 'Your Name';
+
+  isDisplayFilters = false;
+
+  toggleFilters(): void {
+    this.isDisplayFilters = !this.isDisplayFilters;
+  }
 }

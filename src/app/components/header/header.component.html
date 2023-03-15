@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="left-container"></div>
+  <div class="left-container"><h1>Youtube Client App</h1></div>
   <div class="center-container">
     <a href="" class="logo">
       <img src="/assets/icons/logo.svg" alt="Logo icon" width="50px" />
@@ -15,7 +15,7 @@
         search
       </button>
     </div>
-    <button class="settings">
+    <button class="settings" type="button" (click)="toggleFilters()">
       <img
         src="./assets/icons/search_settings.svg"
         alt="Settings icon"
@@ -25,7 +25,7 @@
     </button>
   </div>
   <div class="right-container">
-    <span class="user-name">{{ userName }}</span>
+    {{ userName }}
     <img
       src="./assets/icons/login.svg"
       alt="Avatar icon"
@@ -35,3 +35,5 @@
     />
   </div>
 </header>
+
+<app-filters *ngIf="isDisplayFilters"></app-filters>
