@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,15 @@ export class HeaderComponent {
 
   isDisplayFilters = false;
 
-  toggleFilters(): void {
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
+
+  public toggleFilters(): void {
     this.isDisplayFilters = !this.isDisplayFilters;
+  }
+
+  public onSearchVideo(searchWord: string): void {
+    if (searchWord) {
+      this.search.emit(searchWord);
+    }
   }
 }

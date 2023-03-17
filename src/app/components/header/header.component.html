@@ -10,8 +10,14 @@
         class="search-input"
         type="text"
         placeholder="What are you want to find out?"
+        #searchInput
       />
-      <button class="search-btn" mat-raised-button color="primary">
+      <button
+        class="search-btn"
+        mat-raised-button
+        color="primary"
+        (click)="onSearchVideo(searchInput.value)"
+      >
         search
       </button>
     </div>

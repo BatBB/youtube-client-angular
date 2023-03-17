@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item';
 import { SearchResponse } from 'src/app/models/search-response';
 import * as responseData from '../../mock-response.json';
@@ -8,8 +8,16 @@ import * as responseData from '../../mock-response.json';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnChanges {
+  @Input() searchWord = '';
+
   data: SearchResponse = responseData;
 
-  items: SearchItem[] = this.data.items;
+  items: SearchItem[] = [];
+
+  ngOnChanges(): void {
+    if (this.searchWord) {
+      this.items = this.data.items;
+    }
+  }
 }

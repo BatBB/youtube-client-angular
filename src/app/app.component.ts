@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'youtube-client-app';
+
+  searchWord = '';
+
+  getSearchWord(word: string) {
+    this.searchWord = word;
+  }
 }

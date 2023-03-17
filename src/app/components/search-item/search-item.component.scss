@@ -2,7 +2,7 @@ mat-card {
   max-width: 260px;
   height: 325px;
   padding-top: 20px;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   border-radius: 5px;
 
   &>*:not(:last-child):not(button) {
@@ -39,25 +39,5 @@ mat-card-title {
     display: flex;
     align-items: center;
     column-gap: 3px;
-  }
-}
-
-mat-card-footer {
-  height: 5px;
-
-  &.red {
-    background-color: #EB5757;
-  }
-
-  &.yellow {
-    background-color: #F2C94C;
-  }
-
-  &.green {
-    background-color: #27AE60;
-  }
-
-  &.blue {
-    background-color: #2F80ED;
   }
 }
