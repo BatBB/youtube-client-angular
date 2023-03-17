@@ -26,5 +26,8 @@
     {{ cardItem.snippet.title }}
   </mat-card-title>
   <button mat-flat-button color="primary">More...</button>
-  <mat-card-footer></mat-card-footer>
+  <mat-card-footer
+    appCardBottomColor
+    [publishedDate]="cardItem.snippet.publishedAt"
+  ></mat-card-footer>
 </mat-card>

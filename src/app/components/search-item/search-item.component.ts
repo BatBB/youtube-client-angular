@@ -7,6 +7,5 @@ import { SearchItem } from 'src/app/models/search-item';
   styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent {
-  @Input()
-  cardItem!: SearchItem;
+  @Input() cardItem!: SearchItem;
 }
