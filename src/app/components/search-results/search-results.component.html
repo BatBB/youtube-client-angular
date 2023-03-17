@@ -1,1 +1,6 @@
-<p>search-results works!</p>
+<mat-toolbar>
+  <app-search-item
+    *ngFor="let item of items"
+    [cardItem]="item"
+  ></app-search-item>
+</mat-toolbar>

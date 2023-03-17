@@ -5,12 +5,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SearchItemComponent } from './components/search-item/search-item.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     HeaderComponent,
     FiltersComponent,
     SearchResultsComponent,
+    SearchItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +31,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     MatButtonModule,
     MatInputModule,
     MatButtonToggleModule,
+    MatCardModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
