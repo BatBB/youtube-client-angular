@@ -11,4 +11,9 @@ export class FiltersComponent {
   getFilterKey(filterKey: string) {
     if (filterKey) this.filter.emit(filterKey);
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  changeSort(sortBtn: string) {
+    console.log('sort', sortBtn);
+  }
 }

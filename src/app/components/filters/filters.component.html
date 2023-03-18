@@ -2,8 +2,20 @@
   <div>
     Sorting by:
     <mat-button-toggle-group name="sorting">
-      <mat-button-toggle value="date">date</mat-button-toggle>
-      <mat-button-toggle value="count">count of view</mat-button-toggle>
+      <mat-button-toggle
+        value="date"
+        #toggleSortDate
+        (click)="changeSort(toggleSortDate.value)"
+      >
+        date
+      </mat-button-toggle>
+      <mat-button-toggle
+        value="count"
+        #toggleSortCount
+        (click)="changeSort(toggleSortCount.value)"
+      >
+        count of view
+      </mat-button-toggle>
     </mat-button-toggle-group>
   </div>
   <div>

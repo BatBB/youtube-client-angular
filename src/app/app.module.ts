@@ -16,6 +16,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { SearchItemComponent } from './components/search-item/search-item.component';
 import { CardBottomColorDirective } from './directives/card-bottom-color.directive';
 import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     SearchItemComponent,
     CardBottomColorDirective,
     FilterPipe,
+    SortPipe,
   ],
   imports: [
     BrowserModule,
