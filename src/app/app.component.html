@@ -1,8 +1,10 @@
 <app-header
   (search)="getSearchWord($event)"
   (filter)="getFilterKeyAppComponent($event)"
+  (sort)="getSortAppComponent($event)"
 ></app-header>
 <app-search-results
-  [searchWord]="searchWord"
+  [searchKey]="searchKey"
   [filterKey]="filterKey"
+  [sort]="sort"
 ></app-search-results>

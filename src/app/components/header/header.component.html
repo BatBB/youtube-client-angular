@@ -45,4 +45,5 @@
 <app-filters
   *ngIf="isDisplayFilters"
   (filter)="onFilterKey($event)"
+  (sort)="onSort($event)"
 ></app-filters>

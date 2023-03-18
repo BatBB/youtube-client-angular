@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item';
 import { SearchResponse } from 'src/app/models/search-response';
+import { Sort } from 'src/app/models/sort';
 import * as responseData from '../../mock-response.json';
 
 @Component({
@@ -9,16 +10,18 @@ import * as responseData from '../../mock-response.json';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnChanges {
-  @Input() searchWord = '';
+  @Input() searchKey = '';
 
   @Input() filterKey = '';
+
+  @Input() sort: Sort = { sortBy: '', isAsc: true };
 
   data: SearchResponse = responseData;
 
   items: SearchItem[] = [];
 
   ngOnChanges(): void {
-    if (this.searchWord) {
+    if (this.searchKey) {
       this.items = this.data.items;
     }
   }

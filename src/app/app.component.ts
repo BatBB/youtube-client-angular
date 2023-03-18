@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Sort } from './models/sort';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,21 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'youtube-client-app';
 
-  searchWord = '';
+  searchKey = '';
 
   filterKey = '';
 
-  getSearchWord(word: string) {
-    this.searchWord = word;
+  sort: Sort = { sortBy: '', isAsc: true };
+
+  getSearchWord(searchKey: string) {
+    this.searchKey = searchKey;
   }
 
   getFilterKeyAppComponent(filterKey: string) {
     this.filterKey = filterKey;
+  }
+
+  getSortAppComponent(sort: Sort) {
+    this.sort = sort;
   }
 }

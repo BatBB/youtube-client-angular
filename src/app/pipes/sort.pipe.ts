@@ -8,10 +8,12 @@ export class SortPipe implements PipeTransform {
   // eslint-disable-next-line class-methods-use-this
   transform(
     arr: SearchItem[],
-    bySort: 'date' | 'count',
+    sortBy: string,
     isSortAsc: boolean
   ): SearchItem[] {
-    if (bySort === 'date') {
+    if (sortBy === '') return arr;
+
+    if (sortBy === 'date') {
       return arr.sort((a, b) =>
         isSortAsc
           ? Date.parse(a.snippet.publishedAt) -

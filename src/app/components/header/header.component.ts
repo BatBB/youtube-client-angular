@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Sort } from 'src/app/models/sort';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,8 @@ export class HeaderComponent {
 
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output() sort: EventEmitter<Sort> = new EventEmitter<Sort>();
+
   public toggleFilters(): void {
     this.isDisplayFilters = !this.isDisplayFilters;
   }
@@ -25,8 +28,10 @@ export class HeaderComponent {
   }
 
   public onFilterKey(filterKey: string): void {
-    if (filterKey) {
-      this.filter.emit(filterKey);
-    }
+    this.filter.emit(filterKey);
+  }
+
+  public onSort(sort: Sort): void {
+    this.sort.emit(sort);
   }
 }

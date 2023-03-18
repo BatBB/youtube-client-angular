@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Sort } from 'src/app/models/sort';
 
 @Component({
   selector: 'app-filters',
@@ -8,12 +9,21 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class FiltersComponent {
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output() sort: EventEmitter<Sort> = new EventEmitter<Sort>();
+
   getFilterKey(filterKey: string) {
-    if (filterKey) this.filter.emit(filterKey);
+    this.filter.emit(filterKey);
   }
 
+  isAsc = true;
+
   // eslint-disable-next-line class-methods-use-this
-  changeSort(sortBtn: string) {
-    console.log('sort', sortBtn);
+  changeSort(sortBy: string) {
+    const sortData: Sort = {
+      sortBy,
+      isAsc: this.isAsc,
+    };
+    this.sort.emit(sortData);
+    this.isAsc = !this.isAsc;
   }
 }
