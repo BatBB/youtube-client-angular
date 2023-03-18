@@ -8,6 +8,6 @@
   </div>
   <div>
     by word or sentence:
-    <input type="text" />
+    <input type="text" #filterInput (keyup)="getFilterKey(filterInput.value)" />
   </div>
 </div>

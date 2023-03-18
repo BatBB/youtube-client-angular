@@ -12,6 +12,8 @@ export class HeaderComponent {
 
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output() filter: EventEmitter<string> = new EventEmitter<string>();
+
   public toggleFilters(): void {
     this.isDisplayFilters = !this.isDisplayFilters;
   }
@@ -19,6 +21,12 @@ export class HeaderComponent {
   public onSearchVideo(searchWord: string): void {
     if (searchWord) {
       this.search.emit(searchWord);
+    }
+  }
+
+  public onFilterKey(filterKey: string): void {
+    if (filterKey) {
+      this.filter.emit(filterKey);
     }
   }
 }

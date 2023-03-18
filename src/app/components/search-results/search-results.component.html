@@ -1,6 +1,6 @@
 <mat-toolbar>
   <app-search-item
-    *ngFor="let item of items"
+    *ngFor="let item of items | filter : filterKey"
     [cardItem]="item"
   ></app-search-item>
 </mat-toolbar>

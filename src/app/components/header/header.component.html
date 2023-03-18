@@ -42,4 +42,7 @@
   </div>
 </header>
 
-<app-filters *ngIf="isDisplayFilters"></app-filters>
+<app-filters
+  *ngIf="isDisplayFilters"
+  (filter)="onFilterKey($event)"
+></app-filters>

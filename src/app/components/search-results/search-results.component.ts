@@ -11,6 +11,8 @@ import * as responseData from '../../mock-response.json';
 export class SearchResultsComponent implements OnChanges {
   @Input() searchWord = '';
 
+  @Input() filterKey = '';
+
   data: SearchResponse = responseData;
 
   items: SearchItem[] = [];

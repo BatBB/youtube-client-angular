@@ -10,7 +10,13 @@ export class AppComponent {
 
   searchWord = '';
 
+  filterKey = '';
+
   getSearchWord(word: string) {
     this.searchWord = word;
+  }
+
+  getFilterKeyAppComponent(filterKey: string) {
+    this.filterKey = filterKey;
   }
 }
