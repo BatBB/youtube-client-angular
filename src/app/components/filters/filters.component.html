@@ -8,6 +8,11 @@
         (click)="changeSort(toggleSortDate.value)"
       >
         date
+        <mat-icon
+          fontIcon="sort"
+          *ngIf="toggleSortDate.checked"
+          [ngClass]="{ desc: isAsc }"
+        ></mat-icon>
       </mat-button-toggle>
       <mat-button-toggle
         value="count"
@@ -15,6 +20,11 @@
         (click)="changeSort(toggleSortCount.value)"
       >
         count of view
+        <mat-icon
+          fontIcon="sort"
+          *ngIf="toggleSortCount.checked"
+          [ngClass]="{ desc: !isAsc }"
+        ></mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>
   </div>
