@@ -1,18 +1,23 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { ColorsBottomCard } from '../models/colorsBottomCard';
 
 @Directive({
   selector: '[appCardBottomColor]',
 })
 export class CardBottomColorDirective implements OnInit {
+  constructor(private el: ElementRef, private rend: Renderer2) {}
+
   @Input() publishedDate!: string;
 
   private date = 0;
 
   ngOnInit(): void {
     this.date = Date.parse(this.publishedDate);
-    this.el.nativeElement.style.backgroundColor =
-      CardBottomColorDirective.color(this.date);
+    this.rend.setStyle(
+      this.el.nativeElement,
+      'backgroundColor',
+      CardBottomColorDirective.color(this.date)
+    );
   }
 
   private static days(countDay: number) {
@@ -32,6 +37,4 @@ export class CardBottomColorDirective implements OnInit {
     }
     return ColorsBottomCard.red;
   }
-
-  constructor(private el: ElementRef) {}
 }
