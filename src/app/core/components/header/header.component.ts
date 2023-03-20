@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Sort } from 'src/app/youtube/models/sort';
+import { Component } from '@angular/core';
+import { HeaderService } from '../../services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -7,31 +7,5 @@ import { Sort } from 'src/app/youtube/models/sort';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  userName = 'Your Name';
-
-  isDisplayFilters = false;
-
-  @Output() search: EventEmitter<string> = new EventEmitter<string>();
-
-  @Output() filter: EventEmitter<string> = new EventEmitter<string>();
-
-  @Output() sort: EventEmitter<Sort> = new EventEmitter<Sort>();
-
-  public toggleFilters(): void {
-    this.isDisplayFilters = !this.isDisplayFilters;
-  }
-
-  public onSearchVideo(searchWord: string): void {
-    if (searchWord) {
-      this.search.emit(searchWord);
-    }
-  }
-
-  public onFilterKey(filterKey: string): void {
-    this.filter.emit(filterKey);
-  }
-
-  public onSort(sort: Sort): void {
-    this.sort.emit(sort);
-  }
+  constructor(public headerService: HeaderService) {}
 }

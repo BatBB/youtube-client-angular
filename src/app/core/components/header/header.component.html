@@ -16,12 +16,16 @@
         class="search-btn"
         mat-raised-button
         color="primary"
-        (click)="onSearchVideo(searchInput.value)"
+        (click)="this.headerService.onSearchVideo(searchInput.value)"
       >
         search
       </button>
     </div>
-    <button class="settings" type="button" (click)="toggleFilters()">
+    <button
+      class="settings"
+      type="button"
+      (click)="this.headerService.toggleFilters()"
+    >
       <img
         src="./assets/icons/search_settings.svg"
         alt="Settings icon"
@@ -31,7 +35,7 @@
     </button>
   </div>
   <div class="right-container">
-    {{ userName }}
+    {{ this.headerService.userName }}
     <img
       src="./assets/icons/login.svg"
       alt="Avatar icon"
@@ -42,8 +46,8 @@
   </div>
 </header>
 
-<app-filters
+<!-- <app-filters
   *ngIf="isDisplayFilters"
   (filter)="onFilterKey($event)"
   (sort)="onSort($event)"
-></app-filters>
+></app-filters> -->
