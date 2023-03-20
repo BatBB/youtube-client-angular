@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Sort } from './models/sort';
+import { Sort } from './youtube/models/sort';
 
 @Component({
   selector: 'app-root',

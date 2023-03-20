@@ -10,13 +10,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FiltersComponent } from './components/filters/filters.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { SearchItemComponent } from './components/search-item/search-item.component';
-import { CardBottomColorDirective } from './directives/card-bottom-color.directive';
-import { FilterPipe } from './pipes/filter.pipe';
-import { SortPipe } from './pipes/sort.pipe';
+import { HeaderComponent } from './core/components/header/header.component';
+import { FiltersComponent } from './youtube/components/filters/filters.component';
+import { SearchResultsComponent } from './youtube/components/search-results/search-results.component';
+import { SearchItemComponent } from './youtube/components/search-item/search-item.component';
+import { CardBottomColorDirective } from './youtube/directives/card-bottom-color.directive';
+import { FilterPipe } from './youtube/pipes/filter.pipe';
+import { SortPipe } from './youtube/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
