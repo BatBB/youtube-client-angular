@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonToggleModule,
     MatCardModule,
     MatIconModule,
+    MatInputModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -29,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonToggleModule,
     MatCardModule,
     MatIconModule,
+    MatInputModule,
   ],
 })
 export class SharedModule {}

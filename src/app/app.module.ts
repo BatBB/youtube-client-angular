@@ -5,10 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { YoutubeModule } from './youtube/youtube.module';
 import { CoreModule } from './core/core.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, YoutubeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CoreModule,
+    YoutubeModule,
+    AuthModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

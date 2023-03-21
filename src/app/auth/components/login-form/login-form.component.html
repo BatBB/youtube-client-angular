@@ -1,0 +1,25 @@
+<form>
+  <p class="form-login__title">Login</p>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input type="email" matInput placeholder="Ex. pat@example.com" />
+    <mat-error>Please enter a valid email address</mat-error>
+    <mat-error>
+      Email is
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type="password" matInput />
+    <mat-error>Please enter a password</mat-error>
+    <mat-error>
+      Password is
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <div class="form-login__bottom">
+    <a mat-button class="form-login__link-reg">Registration</a>
+    <button mat-raised-button color="primary">Login</button>
+  </div>
+</form>
