@@ -7,6 +7,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { SearchService } from './services/search.service';
 import { CardBottomColorDirective } from './directives/card-bottom-color.directive';
+import { FilterService } from '../core/services/filter.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { CardBottomColorDirective } from './directives/card-bottom-color.directi
   ],
   imports: [CommonModule, SharedModule],
   exports: [SearchResultsComponent, SearchItemComponent],
-  providers: [SearchService],
+  providers: [SearchService, FilterService],
 })
 export class YoutubeModule {}

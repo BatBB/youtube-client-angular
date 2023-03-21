@@ -19,13 +19,5 @@ export class HeaderService {
     }
   }
 
-  // public onFilterKey(filterKey: string): void {
-  //   this.filter.emit(filterKey);
-  // }
-
-  // public onSort(sort: Sort): void {
-  //   this.sort.emit(sort);
-  // }
-
   constructor(private searchService: SearchService) {}
 }

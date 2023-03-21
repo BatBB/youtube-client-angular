@@ -1,4 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
+import { FilterService } from 'src/app/core/services/filter.service';
 import { SearchItem } from '../../models/search-item';
 import { SearchService } from '../../services/search.service';
 
@@ -15,5 +16,8 @@ export class SearchResultsComponent implements DoCheck {
       this.items = this.searchService.items;
   }
 
-  constructor(private searchService: SearchService) {}
+  constructor(
+    private searchService: SearchService,
+    public filterService: FilterService
+  ) {}
 }

@@ -46,8 +46,8 @@
   </div>
 </header>
 
-<!-- <app-filters
-  *ngIf="isDisplayFilters"
-  (filter)="onFilterKey($event)"
-  (sort)="onSort($event)"
-></app-filters> -->
+<app-filters
+  *ngIf="this.headerService.isDisplayFilters"
+  (filter)="this.filterService.onFilterKey($event)"
+  (sort)="this.filterService.onSort($event)"
+></app-filters>

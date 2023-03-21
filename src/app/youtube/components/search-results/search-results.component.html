@@ -1,6 +1,12 @@
 <mat-toolbar>
   <app-search-item
-    *ngFor="let item of items"
+    *ngFor="
+      let item of items
+        | filter : this.filterService.filterKey
+        | sort
+          : this.filterService.sortBy.sortBy
+          : this.filterService.sortBy.isAsc
+    "
     [cardItem]="item"
   ></app-search-item>
 </mat-toolbar>

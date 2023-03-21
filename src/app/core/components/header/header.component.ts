@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilterService } from '../../services/filter.service';
 import { HeaderService } from '../../services/header.service';
 
 @Component({
@@ -7,5 +8,8 @@ import { HeaderService } from '../../services/header.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(public headerService: HeaderService) {}
+  constructor(
+    public headerService: HeaderService,
+    public filterService: FilterService
+  ) {}
 }
