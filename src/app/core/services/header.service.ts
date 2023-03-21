@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SearchService } from 'src/app/youtube/services/search.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +9,13 @@ export class HeaderService {
 
   isDisplayFilters = false;
 
-  search = '';
-
   public toggleFilters(): void {
     this.isDisplayFilters = !this.isDisplayFilters;
   }
 
   public onSearchVideo(searchWord: string): void {
     if (searchWord) {
-      this.search = searchWord;
+      this.searchService.setItems();
     }
   }
 
@@ -27,4 +26,6 @@ export class HeaderService {
   // public onSort(sort: Sort): void {
   //   this.sort.emit(sort);
   // }
+
+  constructor(private searchService: SearchService) {}
 }
