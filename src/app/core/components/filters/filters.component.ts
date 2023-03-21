@@ -17,7 +17,6 @@ export class FiltersComponent {
 
   isAsc = true;
 
-  // eslint-disable-next-line class-methods-use-this
   changeSort(sortBy: string) {
     const sortData: Sort = {
       sortBy,
