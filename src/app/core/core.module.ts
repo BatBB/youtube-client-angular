@@ -5,9 +5,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { FiltersComponent } from './components/filters/filters.component';
 import { FilterService } from './services/filter.service';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FiltersComponent],
+  declarations: [HeaderComponent, FiltersComponent, PageNotFoundComponent],
   exports: [HeaderComponent],
   imports: [CommonModule, SharedModule],
   providers: [HeaderService, FilterService],

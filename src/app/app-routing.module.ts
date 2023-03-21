@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
 import { SearchResultsComponent } from './youtube/components/search-results/search-results.component';
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'main',
+    component: PageNotFoundComponent,
   },
 ];
 
