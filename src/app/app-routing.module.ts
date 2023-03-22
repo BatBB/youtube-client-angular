@@ -4,15 +4,18 @@ import { LoginPageComponent } from './auth/pages/login-page/login-page.component
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
 import { SearchResultsComponent } from './youtube/components/search-results/search-results.component';
 
+import { authGuard } from './core/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'main',
     pathMatch: 'full',
   },
   {
     path: 'main',
     component: SearchResultsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'login',
@@ -21,6 +24,7 @@ const routes: Routes = [
   {
     path: '**',
     component: PageNotFoundComponent,
+    canActivate: [authGuard],
   },
 ];
 

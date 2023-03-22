@@ -11,14 +11,46 @@ export class LoginService {
     password: new FormControl('', [Validators.required]),
   });
 
-  onSubmit() {
+  userName = 'Your Name';
+
+  isLoggedIn = false;
+
+  login() {
+    if (!this.formGroup.value.login || !this.formGroup.value.password) {
+      return;
+    }
+    this.isLoggedIn = true;
     this.setToken();
+    this.setUserName();
     this.router.navigate(['main']);
   }
 
-  setToken() {
-    if (!this.formGroup.value.login) return;
+  logout() {
+    this.deleteToken();
+    this.isLoggedIn = false;
+    this.userName = 'Your Name';
+    this.router.navigate(['login']);
+  }
+
+  checkLogin() {
+    if (localStorage.getItem('token')) {
+      this.isLoggedIn = true;
+      this.setUserName();
+    }
+  }
+
+  private setUserName() {
+    const loginData = localStorage.getItem('token');
+    if (loginData) this.userName = JSON.parse(loginData).login;
+  }
+
+  private setToken() {
     localStorage.setItem('token', JSON.stringify(this.formGroup.value));
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private deleteToken() {
+    localStorage.removeItem('token');
   }
 
   constructor(private router: Router) {}

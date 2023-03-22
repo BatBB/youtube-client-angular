@@ -1,6 +1,6 @@
 <form
   [formGroup]="this.loginService.formGroup"
-  (submit)="this.loginService.onSubmit()"
+  (submit)="this.loginService.login()"
 >
   <p class="form-login__title">Login</p>
   <mat-form-field>
@@ -14,7 +14,7 @@
     <mat-error>Please enter a password</mat-error>
   </mat-form-field>
   <div class="form-login__bottom">
-    <a mat-button class="form-login__link-reg">Registration</a>
+    <a mat-button class="form-login__link-reg" disabled="true">Registration</a>
     <button
       mat-raised-button
       color="primary"

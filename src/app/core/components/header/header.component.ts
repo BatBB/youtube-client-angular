@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/auth/services/login.service';
 import { FilterService } from '../../services/filter.service';
 import { HeaderService } from '../../services/header.service';
 
@@ -7,9 +8,14 @@ import { HeaderService } from '../../services/header.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  ngOnInit(): void {
+    this.loginService.checkLogin();
+  }
+
   constructor(
     public headerService: HeaderService,
-    public filterService: FilterService
+    public filterService: FilterService,
+    public loginService: LoginService
   ) {}
 }

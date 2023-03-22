@@ -5,8 +5,6 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   providedIn: 'root',
 })
 export class HeaderService {
-  userName = 'Your Name';
-
   isDisplayFilters = false;
 
   public toggleFilters(): void {

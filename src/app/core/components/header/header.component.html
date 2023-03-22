@@ -35,7 +35,7 @@
     </button>
   </div>
   <div class="right-container">
-    {{ this.headerService.userName }}
+    {{ this.loginService.userName }}
     <img
       src="./assets/icons/login.svg"
       alt="Avatar icon"
@@ -43,6 +43,9 @@
       width="24px"
       height="24px"
     />
+    <button mat-raised-button color="warn" (click)="this.loginService.logout()">
+      Logout
+    </button>
   </div>
 </header>
 
