@@ -7,7 +7,7 @@ import { SearchResultsComponent } from './youtube/components/search-results/sear
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
