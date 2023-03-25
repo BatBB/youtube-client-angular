@@ -5,15 +5,15 @@ import { Sort } from 'src/app/youtube/models/sort';
   providedIn: 'root',
 })
 export class FilterService {
-  filterKey = '';
+  public filterKey = '';
 
-  sortBy: Sort = { sortBy: '', isAsc: true };
+  public sortData: Sort = { sortBy: '', isAsc: true };
 
   public onFilterKey(filterKey: string): void {
     this.filterKey = filterKey;
   }
 
   public onSort(sort: Sort): void {
-    this.sortBy = sort;
+    this.sortData = sort;
   }
 }

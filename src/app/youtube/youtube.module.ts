@@ -5,9 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { SearchItemComponent } from './components/search-item/search-item.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
-import { SearchService } from './services/search.service';
 import { CardBottomColorDirective } from './directives/card-bottom-color.directive';
-import { FilterService } from '../core/services/filter.service';
 import { YoutubeRoutingModule } from './youtube-routing.module';
 
 @NgModule({
@@ -19,6 +17,6 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
     SortPipe,
   ],
   imports: [CommonModule, SharedModule, YoutubeRoutingModule],
-  providers: [SearchService, FilterService],
+  providers: [],
 })
 export class YoutubeModule {}

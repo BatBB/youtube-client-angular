@@ -16,7 +16,7 @@
         class="search-btn"
         mat-raised-button
         color="primary"
-        (click)="this.headerService.onSearchVideo(searchInput.value)"
+        (click)="search(searchInput.value); searchInput.value = ''"
       >
         search
       </button>

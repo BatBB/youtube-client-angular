@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component } from '@angular/core';
 import { FilterService } from 'src/app/core/services/filter.service';
 import { SearchItem } from '../../models/search-item';
 import { SearchService } from '../../services/search.service';
@@ -8,16 +8,20 @@ import { SearchService } from '../../services/search.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements DoCheck {
-  public items: SearchItem[] = [];
+export class SearchResultsComponent {
+  public videos$ = this.searchService.items$;
 
-  ngDoCheck(): void {
-    if (!this.items.length && this.searchService.items.length)
-      this.items = this.searchService.items;
+  // eslint-disable-next-line class-methods-use-this
+  trackByFn(index: number, item: SearchItem) {
+    return item.id;
+  }
+
+  update() {
+    this.searchService.setItems('asd');
   }
 
   constructor(
-    private searchService: SearchService,
+    public searchService: SearchService,
     public filterService: FilterService
   ) {}
 }

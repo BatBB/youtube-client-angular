@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/auth/services/login.service';
+import { SearchService } from 'src/app/youtube/services/search.service';
 import { FilterService } from '../../services/filter.service';
 import { HeaderService } from '../../services/header.service';
 
@@ -13,9 +14,14 @@ export class HeaderComponent implements OnInit {
     this.loginService.checkLogin();
   }
 
+  public search(searchKey: string) {
+    this.searchService.setItems(searchKey);
+  }
+
   constructor(
     public headerService: HeaderService,
     public filterService: FilterService,
-    public loginService: LoginService
+    public loginService: LoginService,
+    public searchService: SearchService
   ) {}
 }

@@ -29,7 +29,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'error404',
     pathMatch: 'full',
-    // canActivate: [authGuard],
   },
 ];
 
