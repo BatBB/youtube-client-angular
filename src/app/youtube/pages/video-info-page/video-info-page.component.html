@@ -1,7 +1,7 @@
-<div class="container">
-  <a mat-raised-button class="back" color="primary">
+<div class="container" *ngIf="video">
+  <button mat-raised-button class="back" color="primary" (click)="back()">
     <mat-icon fontIcon="arrow_back_ios_new"></mat-icon>
-  </a>
+  </button>
   <mat-card class="video">
     <div class="video__container">
       <div class="video__img">
