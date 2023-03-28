@@ -1,11 +1,11 @@
-:host {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 45px;
 }
 
-form {
+.login-form {
   width: 350px;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ form {
 
     &__bottom {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       align-items: center;
       gap: 14px;
     }

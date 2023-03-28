@@ -1,26 +1,31 @@
-<form
-  [formGroup]="this.loginService.formGroup"
-  (submit)="this.loginService.login()"
->
-  <p class="form-login__title">Login</p>
-  <mat-form-field>
-    <mat-label>Login</mat-label>
-    <input matInput formControlName="login" />
-    <mat-error>Please enter a login</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input type="password" matInput formControlName="password" />
-    <mat-error>Please enter a password</mat-error>
-  </mat-form-field>
-  <div class="form-login__bottom">
-    <a mat-button class="form-login__link-reg" disabled="true">Registration</a>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="this.loginService.formGroup.invalid"
-    >
-      Login
-    </button>
-  </div>
-</form>
+<div class="container">
+  <form
+    [formGroup]="this.loginService.formGroup"
+    (submit)="this.loginService.login()"
+    class="login-form"
+  >
+    <p class="form-login__title">Login</p>
+    <mat-form-field>
+      <mat-label>Login</mat-label>
+      <input matInput formControlName="login" />
+      <mat-error>Please enter a login</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" />
+      <mat-error>Please enter a password</mat-error>
+    </mat-form-field>
+    <div class="form-login__bottom">
+      <a mat-button class="form-login__link-reg" disabled="true">
+        Registration
+      </a>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="this.loginService.formGroup.invalid"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>
