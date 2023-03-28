@@ -7,11 +7,13 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { CardBottomColorDirective } from './directives/card-bottom-color.directive';
 import { YoutubeRoutingModule } from './youtube-routing.module';
+import { VideoInfoPageComponent } from './pages/video-info-page/video-info-page.component';
 
 @NgModule({
   declarations: [
     SearchResultsComponent,
     SearchItemComponent,
+    VideoInfoPageComponent,
     CardBottomColorDirective,
     FilterPipe,
     SortPipe,

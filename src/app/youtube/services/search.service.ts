@@ -10,11 +10,15 @@ import * as responseData from '../../mock-response.json';
 export class SearchService {
   private data: SearchResponse = responseData;
 
-  private items$$ = new BehaviorSubject<SearchItem[]>([]);
+  private videos$$ = new BehaviorSubject<SearchItem[]>([]);
 
-  public items$ = this.items$$.asObservable();
+  public videos$ = this.videos$$.asObservable();
 
   public setItems(searchKey: string) {
-    if (searchKey) this.items$$.next(this.data.items);
+    if (searchKey) this.videos$$.next(this.data.items);
+  }
+
+  public getVideo(id: string): SearchItem | undefined {
+    return this.data.items.find((video) => video.id === id);
   }
 }

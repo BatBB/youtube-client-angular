@@ -9,15 +9,11 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent {
-  public videos$ = this.searchService.items$;
+  public videos$ = this.searchService.videos$;
 
   // eslint-disable-next-line class-methods-use-this
   trackByFn(index: number, item: SearchItem) {
     return item.id;
-  }
-
-  update() {
-    this.searchService.setItems('asd');
   }
 
   constructor(

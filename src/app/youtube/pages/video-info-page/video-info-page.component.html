@@ -1,1 +1,55 @@
-<p>video-info-page works!</p>
+<div class="container">
+  <a mat-raised-button class="back" color="primary">
+    <mat-icon fontIcon="arrow_back_ios_new"></mat-icon>
+  </a>
+  <mat-card class="video">
+    <div class="video__container">
+      <div class="video__img">
+        <img
+          [src]="video!.snippet.thumbnails.maxres.url"
+          [alt]="'Screensaver video ' + video!.snippet.title"
+        />
+      </div>
+
+      <div class="video__info">
+        <div class="video__info-top">
+          <mat-card-title class="video__info-top-title">
+            {{ video!.snippet.title }}
+          </mat-card-title>
+          <div class="video__info-top-date">
+            {{ video!.snippet.publishedAt | date : "fullDate" }}
+          </div>
+        </div>
+        <mat-card-subtitle class="video__info-subtitle">
+          Description:
+        </mat-card-subtitle>
+        <mat-card-content class="video__info-desc">
+          {{ video!.snippet.description }}
+        </mat-card-content>
+        <div class="statistics">
+          <div>
+            <mat-icon fontIcon="visibility"></mat-icon>
+            {{ video!.statistics.viewCount }}
+          </div>
+          <div>
+            <mat-icon fontIcon="thumb_up"></mat-icon>
+            {{ video!.statistics.likeCount }}
+          </div>
+          <div>
+            <mat-icon fontIcon="thumb_down"></mat-icon>
+            {{ video!.statistics.dislikeCount }}
+          </div>
+          <div>
+            <mat-icon fontIcon="forum"></mat-icon>
+            {{ video!.statistics.commentCount }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-card-footer
+      appCardBottomColor
+      [publishedDate]="video!.snippet.publishedAt"
+      class="video__info-footer"
+    ></mat-card-footer>
+  </mat-card>
+</div>
