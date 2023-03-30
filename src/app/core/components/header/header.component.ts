@@ -15,7 +15,8 @@ export class HeaderComponent implements OnInit {
   }
 
   public search(searchKey: string) {
-    this.searchService.setItems(searchKey);
+    // this.searchService.setItems(searchKey);
+    this.searchService.getVideos(searchKey);
   }
 
   constructor(

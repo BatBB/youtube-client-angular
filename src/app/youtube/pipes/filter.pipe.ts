@@ -1,14 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from '../models/search-item';
+import { VideoItem } from '../models/video-item';
 
 @Pipe({
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
   // eslint-disable-next-line class-methods-use-this
-  transform(arr: SearchItem[], filterKey: string): SearchItem[] {
-    return arr.filter((item) =>
-      item.snippet.tags.some((tag) => tag.includes(filterKey))
+  transform(arr: VideoItem[], filterKey: string): VideoItem[] {
+    if (!arr.length || !filterKey.trim()) return arr;
+
+    return arr.filter(
+      (item) =>
+        item.snippet.tags?.some((tag) =>
+          tag.toLowerCase().includes(filterKey.toLowerCase())
+        ) || item.snippet.title.toLowerCase().includes(filterKey.toLowerCase())
     );
   }
 }

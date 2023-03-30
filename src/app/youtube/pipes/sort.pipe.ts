@@ -1,16 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from '../models/search-item';
+import { VideoItem } from '../models/video-item';
 
 @Pipe({
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
   // eslint-disable-next-line class-methods-use-this
-  transform(
-    arr: SearchItem[],
-    sortBy: string,
-    isSortAsc: boolean
-  ): SearchItem[] {
+  transform(arr: VideoItem[], sortBy: string, isSortAsc: boolean): VideoItem[] {
     if (sortBy === '') return arr;
 
     if (sortBy === 'date') {

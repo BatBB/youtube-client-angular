@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderService } from './services/header.service';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
@@ -12,7 +12,7 @@ import { ApiYoutubeInterceptor } from './interceptors/api-youtube.interceptor';
 @NgModule({
   declarations: [HeaderComponent, FiltersComponent, PageNotFoundComponent],
   exports: [HeaderComponent],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, HttpClientModule],
   providers: [
     HeaderService,
     FilterService,

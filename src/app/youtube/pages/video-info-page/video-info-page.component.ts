@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SearchItem } from '../../models/search-item';
+import { VideoItem } from '../../models/video-item';
 import { SearchService } from '../../services/search.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./video-info-page.component.scss'],
 })
 export class VideoInfoPageComponent implements OnInit {
-  public video: SearchItem | null = null;
+  public video: VideoItem | null = null;
 
   ngOnInit(): void {
     this.getVideo();
@@ -19,10 +19,12 @@ export class VideoInfoPageComponent implements OnInit {
   public getVideo(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id === null) return;
-    const video = this.searchService.getVideo(id);
-    if (video) {
-      this.video = video;
-    } else {
+
+    this.searchService.videos$.subscribe((videos) => {
+      this.video = videos.find((video) => video.id === id) || null;
+    });
+
+    if (!this.video) {
       this.router.navigate(['error404']);
     }
   }

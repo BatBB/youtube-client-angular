@@ -10,19 +10,20 @@ export type Snippet = {
   description: string;
   thumbnails: ThumbnailsResolution;
   channelTitle: string;
-  tags: string[];
-  categoryId: string;
+  tags?: string[];
+  categoryId?: string;
   liveBroadcastContent: string;
-  localized: Localized;
-  defaultAudioLanguage: string;
+  localized?: Localized;
+  defaultAudioLanguage?: string;
+  publishTime?: string;
 };
 
 type ThumbnailsResolution = {
   default: VideoResolution;
   medium: VideoResolution;
   high: VideoResolution;
-  standard: VideoResolution;
-  maxres: VideoResolution;
+  standard?: VideoResolution;
+  maxres?: VideoResolution;
 };
 
 type VideoResolution = {
@@ -39,7 +40,12 @@ type Localized = {
 export type Statistics = {
   viewCount: string;
   likeCount: string;
-  dislikeCount: string;
+  // dislikeCount: string;
   favoriteCount: string;
   commentCount: string;
+};
+
+export type Id = {
+  kind: string;
+  videoId: string;
 };

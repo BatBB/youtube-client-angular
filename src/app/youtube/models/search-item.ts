@@ -1,9 +1,9 @@
-import { Snippet, Statistics } from './types.type';
+import { Id, Snippet, Statistics } from './types.type';
 
 export interface SearchItem {
   kind: string;
   etag: string;
-  id: string;
+  id: Id;
   snippet: Snippet;
   statistics: Statistics;
 }

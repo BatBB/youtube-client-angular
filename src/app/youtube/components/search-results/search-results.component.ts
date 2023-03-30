@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FilterService } from 'src/app/core/services/filter.service';
-import { SearchItem } from '../../models/search-item';
+import { VideoItem } from '../../models/video-item';
 import { SearchService } from '../../services/search.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class SearchResultsComponent {
   public videos$ = this.searchService.videos$;
 
   // eslint-disable-next-line class-methods-use-this
-  trackByFn(index: number, item: SearchItem) {
+  trackByFn(index: number, item: VideoItem) {
     return item.id;
   }
 
