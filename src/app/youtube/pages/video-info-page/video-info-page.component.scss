@@ -20,28 +20,26 @@
 .video {
   display: flex;
   margin-left: 32px;
+  height: 460px;
 
   &__container {
     display: flex;
-    min-height: 460px;
+    height: 452px;
   }
 
   &__img {
-    width: max(60%);
+    width: max(60%, 730px);
     flex: 1 0 auto;
     z-index: 2;
 
     img {
       width: 100%;
-      object-fit: contain;
-      object-position: top;
-      height: calc(100% + 10px);
+      height: calc(100% + 8px);
     }
   }
 
   &__info {
-    padding: 35px;
-    padding-bottom: 30px;
+    padding: 35px 30px 20px 35px;
     font-size: 12px;
     color: #828282;
     display: flex;
@@ -59,12 +57,13 @@
         margin: 0;
         padding: 0;
         color: #000000;
-        flex-grow: 1;
       }
 
       &-date {
-        width: 130px;
+        width: 100px;
         font-size: 10px;
+        flex: 1 0 auto;
+        text-align: end;
       }
     }
 
@@ -78,6 +77,7 @@
       flex-grow: 1;
       padding: 0;
       margin-bottom: 20px;
+      overflow: scroll;
     }
 
     .statistics {

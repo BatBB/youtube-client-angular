@@ -6,49 +6,49 @@
     <div class="video__container">
       <div class="video__img">
         <img
-          [src]="video!.snippet.thumbnails.maxres!.url"
-          [alt]="'Screensaver video ' + video!.snippet.title"
+          [src]="video.snippet.thumbnails.maxres!.url"
+          [alt]="'Screensaver video ' + video.snippet.title"
         />
       </div>
 
       <div class="video__info">
         <div class="video__info-top">
           <mat-card-title class="video__info-top-title">
-            {{ video!.snippet.title }}
+            {{ video.snippet.title }}
           </mat-card-title>
           <div class="video__info-top-date">
-            {{ video!.snippet.publishedAt | date : "fullDate" }}
+            {{ video.snippet.publishedAt | date : "fullDate" }}
           </div>
         </div>
         <mat-card-subtitle class="video__info-subtitle">
           Description:
         </mat-card-subtitle>
         <mat-card-content class="video__info-desc">
-          {{ video!.snippet.description }}
+          {{ video.snippet.description }}
         </mat-card-content>
         <div class="statistics">
           <div>
             <mat-icon fontIcon="visibility"></mat-icon>
-            {{ video!.statistics.viewCount }}
+            {{ video.statistics.viewCount }}
           </div>
           <div>
             <mat-icon fontIcon="thumb_up"></mat-icon>
-            {{ video!.statistics.likeCount }}
+            {{ video.statistics.likeCount }}
           </div>
           <!-- <div>
             <mat-icon fontIcon="thumb_down"></mat-icon>
-            {{ video!.statistics.dislikeCount }}
+            {{ video.statistics.dislikeCount }}
           </div> -->
           <div>
             <mat-icon fontIcon="forum"></mat-icon>
-            {{ video!.statistics.commentCount }}
+            {{ video.statistics.commentCount }}
           </div>
         </div>
       </div>
     </div>
     <mat-card-footer
       appCardBottomColor
-      [publishedDate]="video!.snippet.publishedAt"
+      [publishedDate]="video.snippet.publishedAt"
       class="video__info-footer"
     ></mat-card-footer>
   </mat-card>
