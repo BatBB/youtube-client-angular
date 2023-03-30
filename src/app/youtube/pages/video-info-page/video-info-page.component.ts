@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { VideoItem } from '../../models/video-item';
 import { SearchService } from '../../services/search.service';
 
@@ -9,8 +10,10 @@ import { SearchService } from '../../services/search.service';
   templateUrl: './video-info-page.component.html',
   styleUrls: ['./video-info-page.component.scss'],
 })
-export class VideoInfoPageComponent implements OnInit {
+export class VideoInfoPageComponent implements OnInit, OnDestroy {
   public video: VideoItem | null = null;
+
+  private subscription!: Subscription;
 
   ngOnInit(): void {
     this.getVideo();
@@ -20,7 +23,7 @@ export class VideoInfoPageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id === null) return;
 
-    this.searchService.videos$.subscribe((videos) => {
+    this.subscription = this.searchService.videos$.subscribe((videos) => {
       this.video = videos.find((video) => video.id === id) || null;
     });
 
@@ -31,6 +34,10 @@ export class VideoInfoPageComponent implements OnInit {
 
   public back() {
     this.location.back();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   constructor(
