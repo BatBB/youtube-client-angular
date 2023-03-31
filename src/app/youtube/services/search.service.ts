@@ -22,17 +22,15 @@ export class SearchService {
 
   public videos$ = this.videos$$.asObservable();
 
-  getVideos(searchKey: string): void {
-    this.getVideosResponse(searchKey)
-      .pipe(
-        map((resp) => resp.items.map((video) => video.id.videoId).join(',')),
-        switchMap((ids) => this.getVideoResponse(ids)),
-        tap((resp) => this.videos$$.next(resp.items))
-      )
-      .subscribe();
+  public getVideos(searchKey: string): Observable<VideosResponse> {
+    return this.getVideosResponse(searchKey).pipe(
+      map((resp) => resp.items.map((video) => video.id.videoId).join(',')),
+      switchMap((ids) => this.getVideoResponse(ids)),
+      tap((resp) => this.videos$$.next(resp.items))
+    );
   }
 
-  getVideosResponse(searchKey: string): Observable<SearchResponse> {
+  private getVideosResponse(searchKey: string): Observable<SearchResponse> {
     const params = new HttpParams()
       .set('type', 'video')
       .set('part', 'snippet')
@@ -48,7 +46,7 @@ export class SearchService {
     );
   }
 
-  getVideoResponse(ids: string): Observable<VideosResponse> {
+  private getVideoResponse(ids: string): Observable<VideosResponse> {
     const params = new HttpParams()
       .set('id', ids)
       .set('part', 'snippet,statistics');
