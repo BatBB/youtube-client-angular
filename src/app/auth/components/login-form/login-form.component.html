@@ -5,16 +5,50 @@
       <mat-label>Login</mat-label>
       <input matInput formControlName="login" type="email" />
       <mat-error *ngIf="formGroup.controls.login.hasError('required')">
-        Email is required
+        Please enter a login email
       </mat-error>
       <mat-error *ngIf="formGroup.controls.login.invalid">
-        Please enter a valid email
+        The login email is invalid
       </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input type="password" matInput formControlName="password" />
-      <mat-error>Please enter a password</mat-error>
+      <mat-error *ngIf="formGroup.controls.password.hasError('required')">
+        Please enter a password
+      </mat-error>
+      <mat-error
+        *ngIf="
+          formGroup.controls.password.invalid &&
+          !formGroup.controls.password.hasError('required')
+        "
+      >
+        Your password isn't strong enough:
+        <div
+          class="password-error"
+          *ngIf="formGroup.controls.password.hasError('minlength')"
+        >
+          at least 8 characters
+        </div>
+        <div
+          class="password-error"
+          *ngIf="formGroup.controls.password.hasError('case')"
+        >
+          a mixture of both uppercase and lowercase letters
+        </div>
+        <div
+          class="password-error"
+          *ngIf="formGroup.controls.password.hasError('digit')"
+        >
+          a mixture of letters and numbers
+        </div>
+        <div
+          class="password-error"
+          *ngIf="formGroup.controls.password.hasError('character')"
+        >
+          inclusion of at least one special character, e.g., ! @ # ? ]
+        </div>
+      </mat-error>
     </mat-form-field>
     <div class="form-login__bottom">
       <a mat-button class="form-login__link-reg" disabled="true">

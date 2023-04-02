@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormType } from 'src/app/shared/models/form-type';
-import { emailValidator } from 'src/app/shared/services/validators';
+import {
+  emailValidator,
+  passwordValidator,
+} from 'src/app/shared/services/validators';
 import { LoginService } from '../../services/login.service';
 import { LoginData } from '../../models/login-data';
 
@@ -21,7 +24,11 @@ export class LoginFormComponent implements OnInit {
       }),
       password: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required, Validators.minLength(8)],
+        validators: [
+          Validators.required,
+          Validators.minLength(8),
+          passwordValidator(),
+        ],
       }),
     });
   }
