@@ -1,14 +1,10 @@
 <div class="container">
-  <form
-    [formGroup]="this.loginService.formGroup"
-    (submit)="submitLogin()"
-    class="login-form"
-  >
+  <form [formGroup]="formGroup" (submit)="submitLogin()" class="login-form">
     <p class="form-login__title">Login</p>
     <mat-form-field>
       <mat-label>Login</mat-label>
-      <input matInput formControlName="login" />
-      <mat-error>Please enter a login</mat-error>
+      <input matInput formControlName="login" type="email" />
+      <mat-error>Please enter a email</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
@@ -19,11 +15,7 @@
       <a mat-button class="form-login__link-reg" disabled="true">
         Registration
       </a>
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="this.loginService.formGroup.invalid"
-      >
+      <button mat-raised-button color="primary" [disabled]="formGroup.invalid">
         Login
       </button>
     </div>

@@ -1,30 +1,22 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { LoginData } from '../models/login-data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  formGroup = new FormGroup({
-    login: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
-
   userName = '';
 
   private isLoggedIn$$ = new BehaviorSubject<boolean>(false);
 
   public isLoggedIn$ = this.isLoggedIn$$.asObservable();
 
-  public login() {
-    if (!this.formGroup.value.login || !this.formGroup.value.password) {
-      return;
-    }
+  public login(loginData: LoginData) {
     this.isLoggedIn$$.next(true);
-    this.setToken();
-    this.setUserName();
+    this.setToken(loginData);
+    this.setUserName(loginData.login);
     this.router.navigate(['main']);
   }
 
@@ -42,13 +34,15 @@ export class LoginService {
     }
   }
 
-  private setUserName() {
+  private setUserName(login?: string) {
+    if (login) this.userName = login;
     const loginData = localStorage.getItem('token');
-    if (loginData) this.userName = JSON.parse(loginData).login;
+    if (loginData) this.userName = (<LoginData>JSON.parse(loginData)).login;
   }
 
-  private setToken() {
-    localStorage.setItem('token', JSON.stringify(this.formGroup.value));
+  // eslint-disable-next-line class-methods-use-this
+  private setToken(loginData: LoginData) {
+    localStorage.setItem('token', JSON.stringify(loginData));
   }
 
   // eslint-disable-next-line class-methods-use-this
