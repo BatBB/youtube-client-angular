@@ -7,5 +7,9 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent {
+  submitLogin() {
+    this.loginService.login();
+  }
+
   constructor(public loginService: LoginService) {}
 }

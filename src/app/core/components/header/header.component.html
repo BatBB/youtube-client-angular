@@ -1,48 +1,63 @@
 <header class="header">
-  <div class="left-container"><h1>Youtube Client App</h1></div>
-  <div class="center-container">
-    <a
-      class="logo"
-      [routerLink]="['/main']"
-      routerLinkActive="router-link-active"
-    >
-      <img src="./assets/icons/logo.svg" alt="Logo icon" width="50px" />
-    </a>
-    <div class="search">
-      <input
-        matInput
-        class="search-input"
-        type="text"
-        placeholder="What are you want to find out?"
-        #searchInput
-        (input)="search(searchInput.value)"
-      />
+  <div class="container">
+    <div class="header-wrapper">
+      <div class="center-container">
+        <a
+          class="logo"
+          [routerLink]="['/main']"
+          routerLinkActive="router-link-active"
+        >
+          <img src="./assets/icons/logo.svg" alt="Logo icon" width="50px" />
+        </a>
+        <div class="search">
+          <input
+            matInput
+            class="search-input"
+            type="text"
+            placeholder="What are you want to find out?"
+            #searchInput
+            (input)="search(searchInput.value)"
+          />
+        </div>
+        <button
+          class="settings"
+          type="button"
+          (click)="this.headerService.toggleFilters()"
+        >
+          <img
+            src="./assets/icons/search_settings.svg"
+            alt="Settings icon"
+            width="24px"
+            height="24px"
+          />
+        </button>
+      </div>
+      <div class="right-container">
+        <div class="user">
+          <span class="user-info" *ngIf="loginService.isLoggedIn$ | async">
+            {{ this.loginService.userName }}
+            <img
+              src="./assets/icons/login.svg"
+              alt="Avatar icon"
+              class="user-avatar"
+              width="24px"
+              height="24px"
+            />
+          </span>
+          <button
+            *ngIf="loginService.isLoggedIn$ | async; else loginBtn"
+            mat-raised-button
+            color="warn"
+            (click)="this.loginService.logout()"
+          >
+            Logout
+          </button>
+          <ng-template #loginBtn>
+            <button mat-raised-button color="primary">Login</button>
+          </ng-template>
+        </div>
+      </div>
     </div>
-    <button
-      class="settings"
-      type="button"
-      (click)="this.headerService.toggleFilters()"
-    >
-      <img
-        src="./assets/icons/search_settings.svg"
-        alt="Settings icon"
-        width="24px"
-        height="24px"
-      />
-    </button>
-  </div>
-  <div class="right-container">
-    {{ this.loginService.userName }}
-    <img
-      src="./assets/icons/login.svg"
-      alt="Avatar icon"
-      class="user-avatar"
-      width="24px"
-      height="24px"
-    />
-    <button mat-raised-button color="warn" (click)="this.loginService.logout()">
-      Logout
-    </button>
   </div>
 </header>
 

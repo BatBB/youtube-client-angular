@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,30 +12,32 @@ export class LoginService {
     password: new FormControl('', [Validators.required]),
   });
 
-  userName = 'Your Name';
+  userName = '';
 
-  isLoggedIn = false;
+  private isLoggedIn$$ = new BehaviorSubject<boolean>(false);
 
-  login() {
+  public isLoggedIn$ = this.isLoggedIn$$.asObservable();
+
+  public login() {
     if (!this.formGroup.value.login || !this.formGroup.value.password) {
       return;
     }
-    this.isLoggedIn = true;
+    this.isLoggedIn$$.next(true);
     this.setToken();
     this.setUserName();
     this.router.navigate(['main']);
   }
 
-  logout() {
+  public logout() {
     this.deleteToken();
-    this.isLoggedIn = false;
-    this.userName = 'Your Name';
+    this.isLoggedIn$$.next(false);
+    this.userName = '';
     this.router.navigate(['login']);
   }
 
-  checkLogin() {
+  public checkLogin() {
     if (localStorage.getItem('token')) {
-      this.isLoggedIn = true;
+      this.isLoggedIn$$.next(true);
       this.setUserName();
     }
   }
