@@ -22,6 +22,11 @@ const routes: Routes = [
     component: LoginPageComponent,
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
     path: 'error404',
     component: PageNotFoundComponent,
   },
