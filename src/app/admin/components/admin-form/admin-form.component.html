@@ -1,1 +1,69 @@
-<p>admin-form works!</p>
+<div class="container">
+  <form [formGroup]="adminForm" class="admin-form">
+    <p>Creating new card</p>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-error *ngIf="adminForm.controls.title.hasError('required')">
+        Please enter a title
+      </mat-error>
+      <mat-error *ngIf="adminForm.controls.title.hasError('minlength')">
+        The title is too short
+      </mat-error>
+      <mat-error *ngIf="adminForm.controls.title.hasError('maxlength')">
+        The title is too long
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" />
+      <mat-error *ngIf="adminForm.controls.description.hasError('maxlength')">
+        The description is too long
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Link image</mat-label>
+      <input matInput formControlName="linkImage" />
+      <mat-error *ngIf="adminForm.controls.linkImage.hasError('required')">
+        Please enter a link to the image
+      </mat-error>
+      <mat-error *ngIf="adminForm.controls.linkImage.hasError('pattern')">
+        The image link is invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Link video</mat-label>
+      <input matInput formControlName="linkVideo" />
+      <mat-error *ngIf="adminForm.controls.linkVideo.hasError('required')">
+        Please enter a link to the video
+      </mat-error>
+      <mat-error *ngIf="adminForm.controls.linkVideo.hasError('pattern')">
+        The video link is invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Creation date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date"
+        [max]="maxDate"
+      />
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="adminForm.controls.date.hasError('required')">
+        Please enter a creation date
+      </mat-error>
+      <mat-error *ngIf="adminForm.controls.date.hasError('matDatepickerMax')">
+        The date is invalid
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="adminForm.invalid">
+      Create card
+    </button>
+  </form>
+</div>
