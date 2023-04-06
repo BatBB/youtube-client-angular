@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="adminForm" class="admin-form">
+  <form [formGroup]="adminForm" class="admin-form" (submit)="onSubmit()">
     <p class="admin-form__title">Creating new card</p>
     <mat-form-field>
       <mat-label>Title</mat-label>
@@ -46,6 +46,8 @@
       <input
         matInput
         [matDatepicker]="picker"
+        (click)="picker.open()"
+        (focus)="picker.open()"
         formControlName="date"
         [max]="maxDate"
       />

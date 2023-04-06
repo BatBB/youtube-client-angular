@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormType } from 'src/app/shared/models/form-type';
+import { Router } from '@angular/router';
 import { AdminData } from '../../models/admin-data.model';
 
 @Component({
@@ -12,6 +13,10 @@ export class AdminFormComponent implements OnInit {
   adminForm!: FormGroup<FormType<AdminData>>;
 
   maxDate!: string;
+
+  onSubmit() {
+    this.router.navigate(['/main']);
+  }
 
   ngOnInit(): void {
     this.maxDate = new Date().toISOString().slice(0, 10);
@@ -50,4 +55,6 @@ export class AdminFormComponent implements OnInit {
       }),
     });
   }
+
+  constructor(private router: Router) {}
 }
