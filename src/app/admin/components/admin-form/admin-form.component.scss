@@ -1,0 +1,28 @@
+.admin-form {
+  width: 430px;
+  padding: 35px 25px;
+  margin: 0 auto;
+  border-radius: 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  background: #F2F2F2;
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    height: 36px;
+    width: 50%;
+  }
+}

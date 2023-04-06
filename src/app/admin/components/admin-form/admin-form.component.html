@@ -1,6 +1,6 @@
 <div class="container">
   <form [formGroup]="adminForm" class="admin-form">
-    <p>Creating new card</p>
+    <p class="admin-form__title">Creating new card</p>
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" />
@@ -62,8 +62,15 @@
         The date is invalid
       </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="adminForm.invalid">
-      Create card
-    </button>
+    <div class="admin-form__bottom">
+      <button
+        mat-raised-button
+        class="admin-form__btn"
+        color="primary"
+        [disabled]="adminForm.invalid"
+      >
+        Create card
+      </button>
+    </div>
   </form>
 </div>
