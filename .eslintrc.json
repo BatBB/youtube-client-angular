@@ -9,7 +9,9 @@
         "*.ts"
       ],
       "parserOptions": {
-        "project": ["tsconfig(.app|.spec|).json"]
+        "project": [
+          "tsconfig(.app|.spec|).json"
+        ]
       },
       "extends": [
         "eslint:recommended",
@@ -49,6 +51,14 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/recommended"
+      ]
     }
   ]
 }
