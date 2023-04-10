@@ -41,29 +41,6 @@
         The video link is invalid
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Creation date</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        (click)="picker.open()"
-        (focus)="picker.open()"
-        formControlName="date"
-        [max]="maxDate"
-      />
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="adminForm.controls.date.hasError('required')">
-        Please enter a creation date
-      </mat-error>
-      <mat-error *ngIf="adminForm.controls.date.hasError('matDatepickerMax')">
-        The date is invalid
-      </mat-error>
-    </mat-form-field>
     <div class="admin-form__bottom">
       <button
         mat-raised-button

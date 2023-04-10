@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormType } from 'src/app/shared/models/form-type';
 import { Router } from '@angular/router';
-import { AdminData } from '../../models/admin-data.model';
+import { Store } from '@ngrx/store';
+import { CustomCard } from '../../models/custom-card.model';
+import * as CustomCardsActions from '../../../store/actions/custom-cards.actions';
 
 @Component({
   selector: 'app-admin-form',
@@ -10,11 +12,16 @@ import { AdminData } from '../../models/admin-data.model';
   styleUrls: ['./admin-form.component.scss'],
 })
 export class AdminFormComponent implements OnInit {
-  adminForm!: FormGroup<FormType<AdminData>>;
+  adminForm!: FormGroup<FormType<CustomCard>>;
 
   maxDate!: string;
 
   onSubmit() {
+    this.store.dispatch(
+      CustomCardsActions.setCustomCard({
+        card: <CustomCard>this.adminForm.value,
+      })
+    );
     this.router.navigate(['/main']);
   }
 
@@ -49,12 +56,8 @@ export class AdminFormComponent implements OnInit {
           ),
         ],
       }),
-      date: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
     });
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store) {}
 }

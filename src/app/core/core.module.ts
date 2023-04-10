@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { ApiYoutubeInterceptor } from './interceptors/api-youtube.interceptor';
 import { youtubeReducers } from '../store/reducers/youtube-data.reduce';
 import { YoutubeEffects } from '../store/effects/youtube-data.effect';
+import { customCardsReducers } from '../store/reducers/custom-card.reduce';
 
 @NgModule({
   declarations: [HeaderComponent, FiltersComponent, PageNotFoundComponent],
@@ -27,6 +28,7 @@ import { YoutubeEffects } from '../store/effects/youtube-data.effect';
     StoreModule.forRoot(
       {
         youtubeVideos: youtubeReducers,
+        customCards: customCardsReducers,
       },
       {}
     ),
