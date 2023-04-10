@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -12,7 +11,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [],
   imports: [
-    MatToolbarModule,
     MatButtonModule,
     MatInputModule,
     MatButtonToggleModule,
@@ -23,7 +21,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
   ],
   exports: [
-    MatToolbarModule,
     MatButtonModule,
     MatInputModule,
     MatButtonToggleModule,

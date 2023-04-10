@@ -5,6 +5,10 @@ mat-card {
   background-color: #e5e5e5;
   border-radius: 5px;
 
+  img {
+    margin-bottom: 20px;
+  }
+
   &>*:not(:last-child):not(button) {
     padding: 0 20px;
   }
@@ -21,25 +25,6 @@ mat-card-title {
   overflow: hidden;
   flex-grow: 1;
   margin-bottom: 18px;
-}
-
-.statistics {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 10px;
-
-  .mat-icon {
-    font-size: 13px;
-    width: 13px;
-    height: 13px;
-  }
-
-  & div {
-    display: flex;
-    align-items: center;
-    column-gap: 3px;
-  }
 }
 
 mat-card-footer {

@@ -8,7 +8,7 @@ enum CustomCardActionTypes {
 
 export const getCustomCards = createAction(
   CustomCardActionTypes.GetCustomCards,
-  props<{ cards: CustomCard[] }>()
+  props<{ cards: Required<CustomCard>[] }>()
 );
 
 export const setCustomCard = createAction(

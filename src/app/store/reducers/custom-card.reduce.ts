@@ -3,7 +3,7 @@ import { CustomCard } from 'src/app/admin/models/custom-card.model';
 import * as CustomCardsActions from '../actions/custom-cards.actions';
 
 export interface CustomCardsState {
-  cards: CustomCard[];
+  cards: Required<CustomCard>[];
 }
 
 const initialState: CustomCardsState = {
@@ -23,7 +23,10 @@ export const customCardsReducers = createReducer(
     CustomCardsActions.setCustomCard,
     (state, action): CustomCardsState => ({
       ...state,
-      cards: [...state.cards, action.card],
+      cards: [
+        ...state.cards,
+        { ...action.card, date: Date(), id: Date.now().toString() },
+      ],
     })
   )
 );

@@ -1,0 +1,22 @@
+<mat-card *ngIf="cardItem">
+  <img
+    mat-card-image
+    [src]="cardItem.linkImage"
+    [alt]="'Screensaver video ' + cardItem.title"
+  />
+  <mat-card-title>
+    {{ cardItem.title }}
+  </mat-card-title>
+  <a
+    mat-flat-button
+    color="primary"
+    [routerLink]="['/main/video', cardItem.id]"
+    routerLinkActive="router-link-active"
+  >
+    More...
+  </a>
+  <mat-card-footer
+    appCardBottomColor
+    [publishedDate]="cardItem.date"
+  ></mat-card-footer>
+</mat-card>

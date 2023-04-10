@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FilterService } from 'src/app/core/services/filter.service';
 import { Store } from '@ngrx/store';
 import { selectYoutubeVideos } from 'src/app/store/selectors/youtube-data.selector';
+import { selectGetCustomCards } from 'src/app/store/selectors/custom-cards.selector';
+import { CustomCard } from 'src/app/admin/models/custom-card.model';
 import { VideoItem } from '../../models/video-item';
 import * as YoutubeActions from '../../../store/actions/youtube-data.action';
 
@@ -13,12 +15,14 @@ import * as YoutubeActions from '../../../store/actions/youtube-data.action';
 export class SearchResultsComponent implements OnInit {
   videos$ = this.store.select(selectYoutubeVideos);
 
+  cards$ = this.store.select(selectGetCustomCards);
+
   ngOnInit(): void {
     this.store.dispatch(YoutubeActions.appLoaded());
   }
 
   // eslint-disable-next-line class-methods-use-this
-  trackByFn(index: number, item: VideoItem) {
+  trackByFn(index: number, item: VideoItem | CustomCard) {
     return item.id;
   }
 

@@ -1,13 +1,21 @@
-<mat-toolbar *ngIf="videos$ | async as videos">
-  <app-search-item
-    *ngFor="
-      let item of videos!
-        | filter : this.filterService.filterKey
-        | sort
-          : this.filterService.sortData.sortBy
-          : this.filterService.sortData.isAsc;
-      trackBy: trackByFn
-    "
-    [cardItem]="item"
-  ></app-search-item>
-</mat-toolbar>
+<div class="container">
+  <div class="cards" *ngIf="videos$ | async as videos">
+    <app-search-item
+      *ngFor="
+        let item of videos
+          | filter : this.filterService.filterKey
+          | sort
+            : this.filterService.sortData.sortBy
+            : this.filterService.sortData.isAsc;
+        trackBy: trackByFn
+      "
+      [cardItem]="item"
+    ></app-search-item>
+  </div>
+  <div class="cards" *ngIf="cards$ | async as cards">
+    <app-custom-card
+      *ngFor="let card of cards; trackBy: trackByFn"
+      [cardItem]="card"
+    ></app-custom-card>
+  </div>
+</div>
