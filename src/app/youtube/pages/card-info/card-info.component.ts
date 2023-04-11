@@ -1,20 +1,20 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectYoutubeVideos } from 'src/app/store/selectors/youtube-data.selector';
-import { VideoItem } from '../../models/video-item';
+import { Subscription } from 'rxjs';
+import { CustomCard } from 'src/app/admin/models/custom-card.model';
+import { selectGetCustomCards } from 'src/app/store/selectors/custom-cards.selector';
 
 @Component({
-  selector: 'app-video-info-page',
-  templateUrl: './video-info-page.component.html',
-  styleUrls: ['./video-info-page.component.scss'],
+  selector: 'app-card-info',
+  templateUrl: './card-info.component.html',
+  styleUrls: ['./card-info.component.scss'],
 })
-export class VideoInfoPageComponent implements OnInit, OnDestroy {
-  videos$ = this.store.select(selectYoutubeVideos);
+export class CardInfoComponent implements OnInit, OnDestroy {
+  cards$ = this.store.select(selectGetCustomCards);
 
-  public video: VideoItem | null = null;
+  public card: Required<CustomCard> | null = null;
 
   private subscription!: Subscription;
 
@@ -26,11 +26,11 @@ export class VideoInfoPageComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     if (id === null) return;
 
-    this.subscription = this.videos$.subscribe((videos) => {
-      this.video = videos.find((video) => video.id === id) || null;
+    this.subscription = this.cards$.subscribe((cards) => {
+      this.card = cards.find((card) => card.id === id) || null;
     });
 
-    if (!this.video) {
+    if (!this.card) {
       this.router.navigate(['error404']);
     }
   }

@@ -5,11 +5,16 @@ mat-card {
   background-color: #e5e5e5;
   border-radius: 5px;
 
-  &>*:not(:last-child):not(button) {
+  img {
+    margin-bottom: 20px;
+    height: 125px;
+  }
+
+  & > *:not(:last-child):not(button) {
     padding: 0 20px;
   }
 
-  &>button {
+  & > button {
     margin: 0 20px 20px;
   }
 }

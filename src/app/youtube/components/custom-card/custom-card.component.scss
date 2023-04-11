@@ -7,13 +7,14 @@ mat-card {
 
   img {
     margin-bottom: 20px;
+    height: 125px;
   }
 
-  &>*:not(:last-child):not(button) {
+  & > *:not(:last-child):not(button) {
     padding: 0 20px;
   }
 
-  &>button {
+  & > button {
     margin: 0 20px 20px;
   }
 }

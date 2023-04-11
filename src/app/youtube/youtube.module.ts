@@ -9,6 +9,7 @@ import { CardBottomColorDirective } from './directives/card-bottom-color.directi
 import { YoutubeRoutingModule } from './youtube-routing.module';
 import { VideoInfoPageComponent } from './pages/video-info-page/video-info-page.component';
 import { CustomCardComponent } from './components/custom-card/custom-card.component';
+import { CardInfoComponent } from './pages/card-info/card-info.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CustomCardComponent } from './components/custom-card/custom-card.compon
     FilterPipe,
     SortPipe,
     CustomCardComponent,
+    CardInfoComponent,
   ],
   imports: [CommonModule, SharedModule, YoutubeRoutingModule],
   providers: [],
