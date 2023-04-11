@@ -8,10 +8,12 @@ import * as YoutubeActions from '../actions/youtube-data.action';
 export class YoutubeEffects {
   getYoutubeVideos$ = createEffect(() => {
     return this.action$.pipe(
-      ofType(YoutubeActions.appLoaded),
-      mergeMap(() => {
-        return this.searchService.videos$.pipe(
-          map((videos) => YoutubeActions.getYoutubeVideosSuccess({ videos })),
+      ofType(YoutubeActions.searchKey),
+      mergeMap((action) => {
+        return this.searchService.getVideos(action.searchKey).pipe(
+          map((resp) =>
+            YoutubeActions.getYoutubeVideosSuccess({ videos: resp.items })
+          ),
           catchError((error) =>
             of(YoutubeActions.getYoutubeVideosFailure({ error: error.message }))
           )

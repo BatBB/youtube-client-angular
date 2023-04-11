@@ -2,6 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectYoutubeVideos } from 'src/app/store/selectors/youtube-data.selector';
 import { VideoItem } from '../../models/video-item';
 import { SearchService } from '../../services/search.service';
 
@@ -11,6 +13,8 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./video-info-page.component.scss'],
 })
 export class VideoInfoPageComponent implements OnInit, OnDestroy {
+  videos$ = this.store.select(selectYoutubeVideos);
+
   public video: VideoItem | null = null;
 
   private subscription!: Subscription;
@@ -23,7 +27,7 @@ export class VideoInfoPageComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     if (id === null) return;
 
-    this.subscription = this.searchService.videos$.subscribe((videos) => {
+    this.subscription = this.videos$.subscribe((videos) => {
       this.video = videos.find((video) => video.id === id) || null;
     });
 
@@ -44,6 +48,7 @@ export class VideoInfoPageComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private store: Store
   ) {}
 }

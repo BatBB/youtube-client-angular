@@ -1,32 +1,18 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  catchError,
-  EMPTY,
-  map,
-  Observable,
-  retry,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { catchError, EMPTY, map, Observable, retry, switchMap } from 'rxjs';
 import { SearchResponse } from 'src/app/youtube/models/search-response';
-import { VideoItem } from '../models/video-item';
+import { Store } from '@ngrx/store';
 import { VideosResponse } from '../models/videos-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  private videos$$ = new BehaviorSubject<VideoItem[]>([]);
-
-  public videos$ = this.videos$$.asObservable();
-
   public getVideos(searchKey: string): Observable<VideosResponse> {
     return this.getVideosResponse(searchKey).pipe(
       map((resp) => resp.items.map((video) => video.id.videoId).join(',')),
-      switchMap((ids) => this.getVideoResponse(ids)),
-      tap((resp) => this.videos$$.next(resp.items))
+      switchMap((ids) => this.getVideoResponse(ids))
     );
   }
 
@@ -60,5 +46,5 @@ export class SearchService {
     );
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store) {}
 }

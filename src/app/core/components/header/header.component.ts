@@ -7,8 +7,10 @@ import {
   debounceTime,
   distinctUntilChanged,
 } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { FilterService } from '../../services/filter.service';
 import { HeaderService } from '../../services/header.service';
+import * as YoutubeActions from '../../../store/actions/youtube-data.action';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.searchInputValue$
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((val) => {
-        this.subscription = this.searchService.getVideos(val).subscribe();
+        this.store.dispatch(YoutubeActions.searchKey({ searchKey: val }));
       });
   }
 
@@ -41,6 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public headerService: HeaderService,
     public filterService: FilterService,
     public loginService: LoginService,
-    public searchService: SearchService
+    public searchService: SearchService,
+    private store: Store
   ) {}
 }
