@@ -8,7 +8,7 @@ export type Snippet = {
   channelId: string;
   title: string;
   description: string;
-  thumbnails: ThumbnailsResolution;
+  thumbnails: Record<ThumbnailsResolution, VideoResolution>;
   channelTitle: string;
   tags: string[];
   categoryId: string;
@@ -17,13 +17,12 @@ export type Snippet = {
   defaultAudioLanguage: string;
 };
 
-type ThumbnailsResolution = {
-  default: VideoResolution;
-  medium: VideoResolution;
-  high: VideoResolution;
-  standard: VideoResolution;
-  maxres: VideoResolution;
-};
+type ThumbnailsResolution =
+  | 'default'
+  | 'medium'
+  | 'high'
+  | 'standard'
+  | 'maxres';
 
 type VideoResolution = {
   url: string;
