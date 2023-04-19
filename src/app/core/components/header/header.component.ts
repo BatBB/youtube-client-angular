@@ -10,6 +10,13 @@ import { HeaderService } from '../../services/header.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  constructor(
+    public headerService: HeaderService,
+    public filterService: FilterService,
+    public loginService: LoginService,
+    public searchService: SearchService
+  ) {}
+
   ngOnInit(): void {
     this.loginService.checkLogin();
   }
@@ -17,11 +24,4 @@ export class HeaderComponent implements OnInit {
   public search(searchKey: string) {
     this.searchService.setItems(searchKey);
   }
-
-  constructor(
-    public headerService: HeaderService,
-    public filterService: FilterService,
-    public loginService: LoginService,
-    public searchService: SearchService
-  ) {}
 }

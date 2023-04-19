@@ -12,6 +12,7 @@ export class SearchService {
 
   private videos$$ = new BehaviorSubject<SearchItem[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   public videos$ = this.videos$$.asObservable();
 
   public setItems(searchKey: string) {

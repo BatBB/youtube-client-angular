@@ -10,7 +10,14 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./video-info-page.component.scss'],
 })
 export class VideoInfoPageComponent implements OnInit {
-  public video: SearchItem | null = null;
+  video: SearchItem | null = null;
+
+  constructor(
+    private searchService: SearchService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.getVideo();
@@ -30,11 +37,4 @@ export class VideoInfoPageComponent implements OnInit {
   public back() {
     this.location.back();
   }
-
-  constructor(
-    private searchService: SearchService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location
-  ) {}
 }

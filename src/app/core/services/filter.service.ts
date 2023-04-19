@@ -7,7 +7,7 @@ import { Sort } from 'src/app/youtube/models/sort';
 export class FilterService {
   public filterKey = '';
 
-  public sortData: Sort = { sortBy: '', isAsc: true };
+  public sortData: Sort = { sortBy: '', order: 'none' };
 
   public onFilterKey(filterKey: string): void {
     this.filterKey = filterKey;

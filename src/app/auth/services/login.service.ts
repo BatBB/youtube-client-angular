@@ -15,7 +15,9 @@ export class LoginService {
 
   isLoggedIn = false;
 
-  login() {
+  constructor(private router: Router) {}
+
+  public login() {
     if (!this.formGroup.value.login || !this.formGroup.value.password) {
       return;
     }
@@ -25,14 +27,14 @@ export class LoginService {
     this.router.navigate(['main']);
   }
 
-  logout() {
+  public logout() {
     this.deleteToken();
     this.isLoggedIn = false;
     this.userName = 'Your Name';
     this.router.navigate(['login']);
   }
 
-  checkLogin() {
+  public checkLogin() {
     if (localStorage.getItem('token')) {
       this.isLoggedIn = true;
       this.setUserName();
@@ -52,6 +54,4 @@ export class LoginService {
   private deleteToken() {
     localStorage.removeItem('token');
   }
-
-  constructor(private router: Router) {}
 }

@@ -5,20 +5,11 @@ import { ColorsBottomCard } from '../models/colorsBottomCard';
   selector: '[appCardBottomColor]',
 })
 export class CardBottomColorDirective implements OnInit {
-  constructor(private el: ElementRef, private rend: Renderer2) {}
-
   @Input() publishedDate!: string;
 
   private date = 0;
 
-  ngOnInit(): void {
-    this.date = Date.parse(this.publishedDate);
-    this.rend.setStyle(
-      this.el.nativeElement,
-      'backgroundColor',
-      CardBottomColorDirective.color(this.date)
-    );
-  }
+  constructor(private el: ElementRef, private rend: Renderer2) {}
 
   private static days(countDay: number) {
     return 1000 * 60 * 60 * 24 * countDay;
@@ -36,5 +27,14 @@ export class CardBottomColorDirective implements OnInit {
       return ColorsBottomCard.yellow;
     }
     return ColorsBottomCard.red;
+  }
+
+  ngOnInit(): void {
+    this.date = Date.parse(this.publishedDate);
+    this.rend.setStyle(
+      this.el.nativeElement,
+      'backgroundColor',
+      CardBottomColorDirective.color(this.date)
+    );
   }
 }
