@@ -14,7 +14,7 @@ export class SearchResultsComponent implements OnChanges {
 
   @Input() filterKey = '';
 
-  @Input() sort: Sort = { sortBy: '', isAsc: true };
+  @Input() sort: Sort = { sortBy: '', order: 'none' };
 
   data: SearchResponse = responseData;
 

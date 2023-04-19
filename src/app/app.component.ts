@@ -13,17 +13,17 @@ export class AppComponent {
 
   filterKey = '';
 
-  sort: Sort = { sortBy: '', isAsc: true };
+  sort: Sort = { sortBy: '', order: 'none' };
 
-  getSearchWord(searchKey: string) {
+  public getSearchWord(searchKey: string) {
     this.searchKey = searchKey;
   }
 
-  getFilterKeyAppComponent(filterKey: string) {
+  public getFilterKeyAppComponent(filterKey: string) {
     this.filterKey = filterKey;
   }
 
-  getSortAppComponent(sort: Sort) {
+  public getSortAppComponent(sort: Sort) {
     this.sort = sort;
   }
 }

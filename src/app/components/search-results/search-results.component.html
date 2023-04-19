@@ -1,7 +1,7 @@
 <mat-toolbar>
   <app-search-item
     *ngFor="
-      let item of items | filter : filterKey | sort : sort.sortBy : sort.isAsc
+      let item of items | filter : filterKey | sort : sort.sortBy : sort.order
     "
     [cardItem]="item"
   ></app-search-item>

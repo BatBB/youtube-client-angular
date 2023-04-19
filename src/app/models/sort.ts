@@ -1,4 +1,6 @@
-export interface Sort {
+export type Sort = {
   sortBy: string;
-  isAsc: boolean;
-}
+  order: SortOrder;
+};
+
+export type SortOrder = 'asc' | 'desc' | 'none';

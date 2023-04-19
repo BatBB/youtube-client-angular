@@ -7,15 +7,15 @@ import { Sort } from 'src/app/models/sort';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  userName = 'Your Name';
-
-  isDisplayFilters = false;
-
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter<Sort>();
+
+  userName = 'Your Name';
+
+  isDisplayFilters = false;
 
   public toggleFilters(): void {
     this.isDisplayFilters = !this.isDisplayFilters;
