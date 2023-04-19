@@ -1,9 +1,9 @@
 import { SearchItem } from './search-item';
-import { PageInfo } from './types.type';
+import { PageInfo } from './youtube-response';
 
-export interface SearchResponse {
+export type SearchResponse = {
   kind: string;
   etag: string;
   pageInfo: PageInfo;
   items: SearchItem[];
-}
+};
