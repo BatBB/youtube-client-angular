@@ -8,23 +8,21 @@ export type Snippet = {
   channelId: string;
   title: string;
   description: string;
-  thumbnails: ThumbnailsResolution;
+  thumbnails: Record<ThumbnailsResolution, VideoResolution>;
   channelTitle: string;
-  tags?: string[];
-  categoryId?: string;
+  tags: string[];
+  categoryId: string;
   liveBroadcastContent: string;
-  localized?: Localized;
-  defaultAudioLanguage?: string;
-  publishTime?: string;
+  localized: Localized;
+  defaultAudioLanguage: string;
 };
 
-type ThumbnailsResolution = {
-  default: VideoResolution;
-  medium: VideoResolution;
-  high: VideoResolution;
-  standard?: VideoResolution;
-  maxres?: VideoResolution;
-};
+type ThumbnailsResolution =
+  | 'default'
+  | 'medium'
+  | 'high'
+  | 'standard'
+  | 'maxres';
 
 type VideoResolution = {
   url: string;
@@ -40,7 +38,7 @@ type Localized = {
 export type Statistics = {
   viewCount: string;
   likeCount: string;
-  // dislikeCount: string;
+  dislikeCount: string;
   favoriteCount: string;
   commentCount: string;
 };

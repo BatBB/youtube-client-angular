@@ -20,7 +20,10 @@ import { VideosResponse } from '../models/videos-response';
 export class SearchService {
   private videos$$ = new BehaviorSubject<VideoItem[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   public videos$ = this.videos$$.asObservable();
+
+  constructor(private http: HttpClient) {}
 
   public getVideos(searchKey: string): Observable<VideosResponse> {
     return this.getVideosResponse(searchKey).pipe(
@@ -40,6 +43,7 @@ export class SearchService {
     return this.http.get<SearchResponse>('search', { params }).pipe(
       retry(4),
       catchError((err) => {
+        // eslint-disable-next-line no-console
         console.log('Error:', err);
         return EMPTY;
       })
@@ -54,11 +58,10 @@ export class SearchService {
     return this.http.get<VideosResponse>('videos', { params }).pipe(
       retry(4),
       catchError((err) => {
+        // eslint-disable-next-line no-console
         console.log('Error:', err);
         return EMPTY;
       })
     );
   }
-
-  constructor(private http: HttpClient) {}
 }

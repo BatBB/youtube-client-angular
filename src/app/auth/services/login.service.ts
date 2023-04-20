@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
@@ -7,23 +6,18 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  formGroup = new FormGroup({
-    login: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
-
-  userName = '';
+  userName = 'Your Name';
 
   private isLoggedIn$$ = new BehaviorSubject<boolean>(false);
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   public isLoggedIn$ = this.isLoggedIn$$.asObservable();
 
-  public login() {
-    if (!this.formGroup.value.login || !this.formGroup.value.password) {
-      return;
-    }
+  constructor(private router: Router) {}
+
+  public login(loginData: string) {
     this.isLoggedIn$$.next(true);
-    this.setToken();
+    this.setToken(loginData);
     this.setUserName();
     this.router.navigate(['main']);
   }
@@ -47,14 +41,13 @@ export class LoginService {
     if (loginData) this.userName = JSON.parse(loginData).login;
   }
 
-  private setToken() {
-    localStorage.setItem('token', JSON.stringify(this.formGroup.value));
+  // eslint-disable-next-line class-methods-use-this
+  private setToken(token: string) {
+    localStorage.setItem('token', JSON.stringify(token));
   }
 
   // eslint-disable-next-line class-methods-use-this
   private deleteToken() {
     localStorage.removeItem('token');
   }
-
-  constructor(private router: Router) {}
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -6,10 +7,19 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
 })
-export class LoginFormComponent {
-  submitLogin() {
-    this.loginService.login();
-  }
+export class LoginFormComponent implements OnInit {
+  formGroup!: FormGroup;
 
   constructor(public loginService: LoginService) {}
+
+  ngOnInit(): void {
+    this.formGroup = new FormGroup({
+      login: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
+  }
+
+  submitLogin() {
+    this.loginService.login(this.formGroup.getRawValue());
+  }
 }

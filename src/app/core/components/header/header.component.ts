@@ -20,6 +20,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private searchInputValue$ = new Subject<string>();
 
+  constructor(
+    public headerService: HeaderService,
+    public filterService: FilterService,
+    public loginService: LoginService,
+    public searchService: SearchService
+  ) {}
+
   ngOnInit(): void {
     this.loginService.checkLogin();
     this.searchInputValue$
@@ -36,11 +43,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
   }
-
-  constructor(
-    public headerService: HeaderService,
-    public filterService: FilterService,
-    public loginService: LoginService,
-    public searchService: SearchService
-  ) {}
 }
