@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { SearchItem } from 'src/app/youtube/models/search-item';
 import { SearchResponse } from 'src/app/youtube/models/search-response';
 import * as responseData from '../../mock-response.json';
@@ -19,7 +19,10 @@ export class SearchService {
     if (searchKey) this.videos$$.next(this.data.items);
   }
 
-  public getVideo(id: string): SearchItem | undefined {
-    return this.data.items.find((video) => video.id === id);
+  public getVideo(id: string): Observable<SearchItem> {
+    return this.videos$.pipe(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      map((videos: SearchItem[]) => videos.find((video) => video.id === id)!)
+    );
   }
 }

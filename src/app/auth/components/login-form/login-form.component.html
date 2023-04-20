@@ -1,9 +1,5 @@
 <div class="container">
-  <form
-    [formGroup]="this.loginService.formGroup"
-    (submit)="this.loginService.login()"
-    class="login-form"
-  >
+  <form [formGroup]="formGroup" (submit)="submitLogin()" class="login-form">
     <p class="form-login__title">Login</p>
     <mat-form-field>
       <mat-label>Login</mat-label>
@@ -19,11 +15,7 @@
       <a mat-button class="form-login__link-reg" disabled="true">
         Registration
       </a>
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="this.loginService.formGroup.invalid"
-      >
+      <button mat-raised-button color="primary" [disabled]="formGroup.invalid">
         Login
       </button>
     </div>

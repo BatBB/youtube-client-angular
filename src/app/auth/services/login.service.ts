@@ -1,28 +1,19 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  formGroup = new FormGroup({
-    login: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
-
   userName = 'Your Name';
 
   isLoggedIn = false;
 
   constructor(private router: Router) {}
 
-  public login() {
-    if (!this.formGroup.value.login || !this.formGroup.value.password) {
-      return;
-    }
+  public login(loginData: string) {
     this.isLoggedIn = true;
-    this.setToken();
+    this.setToken(loginData);
     this.setUserName();
     this.router.navigate(['main']);
   }
@@ -46,8 +37,9 @@ export class LoginService {
     if (loginData) this.userName = JSON.parse(loginData).login;
   }
 
-  private setToken() {
-    localStorage.setItem('token', JSON.stringify(this.formGroup.value));
+  // eslint-disable-next-line class-methods-use-this
+  private setToken(token: string) {
+    localStorage.setItem('token', JSON.stringify(token));
   }
 
   // eslint-disable-next-line class-methods-use-this

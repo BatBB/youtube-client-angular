@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { SearchItem } from '../../models/search-item';
 import { SearchService } from '../../services/search.service';
 
@@ -10,31 +11,28 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./video-info-page.component.scss'],
 })
 export class VideoInfoPageComponent implements OnInit {
-  video: SearchItem | null = null;
+  video$!: Observable<SearchItem>;
 
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,
-    private router: Router,
     private location: Location
   ) {}
+
+  public back() {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.getVideo();
   }
 
-  public getVideo(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id === null) return;
-    const video = this.searchService.getVideo(id);
-    if (video) {
-      this.video = video;
-    } else {
-      this.router.navigate(['error404']);
-    }
-  }
-
-  public back() {
-    this.location.back();
+  private getVideo(): void {
+    this.video$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.searchService.getVideo(params.get('id')!)
+      )
+    );
   }
 }
