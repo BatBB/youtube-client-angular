@@ -6,6 +6,8 @@ import {
   Subscription,
   debounceTime,
   distinctUntilChanged,
+  filter,
+  switchMap,
 } from 'rxjs';
 import { FilterService } from '../../services/filter.service';
 import { HeaderService } from '../../services/header.service';
@@ -28,16 +30,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.loginService.checkLogin();
-    this.searchInputValue$
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((val) => {
-        this.subscription = this.searchService.getVideos(val).subscribe();
-      });
+    this.subscription = this.searchInputValue$
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        filter((val) => val.length > 2),
+        switchMap((val) => this.searchService.getVideos(val))
+      )
+      .subscribe();
   }
 
   public search(value: string) {
-    if (value.length > 2) this.searchInputValue$.next(value);
+    this.searchInputValue$.next(value);
   }
 
   ngOnDestroy(): void {

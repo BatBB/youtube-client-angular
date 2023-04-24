@@ -30,11 +30,8 @@ export class VideoInfoPageComponent implements OnInit, OnDestroy {
     this.subscription = this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) =>
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.searchService.videos$.pipe(
-            map((videos) =>
-              videos.find((video) => video.id === params.get('id'))
-            )
+            map((videos) => videos.find(({ id }) => id === params.get('id')))
           )
         )
       )

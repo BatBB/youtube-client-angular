@@ -20,7 +20,9 @@ export class ApiYoutubeInterceptor implements HttpInterceptor {
     return next.handle(
       request.clone({
         url: this.URL_BASE + request.url,
-        params: request.params.set('key', this.API_KEY),
+        setParams: {
+          key: this.API_KEY,
+        },
       })
     );
   }

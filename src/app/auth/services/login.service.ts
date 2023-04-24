@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  userName = 'Your Name';
+  userName = '';
 
-  private isLoggedIn$$ = new BehaviorSubject<boolean>(false);
-
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  public isLoggedIn$ = this.isLoggedIn$$.asObservable();
+  isLoggedIn = this.initLogin();
 
   constructor(private router: Router) {}
 
   public login(loginData: string) {
-    this.isLoggedIn$$.next(true);
+    this.isLoggedIn = true;
     this.setToken(loginData);
     this.setUserName();
     this.router.navigate(['main']);
@@ -24,16 +20,17 @@ export class LoginService {
 
   public logout() {
     this.deleteToken();
-    this.isLoggedIn$$.next(false);
+    this.isLoggedIn = false;
     this.userName = '';
     this.router.navigate(['login']);
   }
 
-  public checkLogin() {
+  private initLogin(): boolean {
     if (localStorage.getItem('token')) {
-      this.isLoggedIn$$.next(true);
       this.setUserName();
+      return true;
     }
+    return false;
   }
 
   private setUserName() {

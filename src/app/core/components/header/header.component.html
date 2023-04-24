@@ -34,7 +34,10 @@
       </div>
       <div class="right-container">
         <div class="user">
-          <span class="user-info" *ngIf="loginService.isLoggedIn$ | async">
+          <span
+            class="user-info"
+            *ngIf="loginService.isLoggedIn; else loginBtn"
+          >
             {{ this.loginService.userName }}
             <img
               src="./assets/icons/login.svg"
@@ -43,15 +46,14 @@
               width="24px"
               height="24px"
             />
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="this.loginService.logout()"
+            >
+              Logout
+            </button>
           </span>
-          <button
-            *ngIf="loginService.isLoggedIn$ | async; else loginBtn"
-            mat-raised-button
-            color="warn"
-            (click)="this.loginService.logout()"
-          >
-            Logout
-          </button>
           <ng-template #loginBtn>
             <button mat-raised-button color="primary">Login</button>
           </ng-template>

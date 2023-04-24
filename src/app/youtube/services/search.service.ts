@@ -27,8 +27,8 @@ export class SearchService {
 
   public getVideos(searchKey: string): Observable<VideosResponse> {
     return this.getVideosResponse(searchKey).pipe(
-      map((resp) => resp.items.map((video) => video.id.videoId).join(',')),
-      switchMap((ids) => this.getVideoResponse(ids)),
+      map(({ items }) => items.map(({ id }) => id.videoId).join(',')),
+      switchMap((ids) => this.getVideoByIdResponse(ids)),
       tap((resp) => this.videos$$.next(resp.items))
     );
   }
@@ -50,7 +50,7 @@ export class SearchService {
     );
   }
 
-  private getVideoResponse(ids: string): Observable<VideosResponse> {
+  private getVideoByIdResponse(ids: string): Observable<VideosResponse> {
     const params = new HttpParams()
       .set('id', ids)
       .set('part', 'snippet,statistics');
