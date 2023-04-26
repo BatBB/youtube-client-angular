@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+// import { BehaviorSubject } from 'rxjs';
 import { LoginData } from '../models/login-data';
 
 @Injectable({
@@ -9,12 +9,18 @@ import { LoginData } from '../models/login-data';
 export class LoginService {
   userName = '';
 
-  private isLoggedIn$$ = new BehaviorSubject<boolean>(false);
+  isLoggedIn = this.initLogin();
 
-  public isLoggedIn$ = this.isLoggedIn$$.asObservable();
+  // private isLoggedIn$$ = new BehaviorSubject<boolean>(false);
+
+  // // eslint-disable-next-line @typescript-eslint/member-ordering
+  // public isLoggedIn$ = this.isLoggedIn$$.asObservable();
+
+  constructor(private router: Router) {}
 
   public login(loginData: LoginData) {
-    this.isLoggedIn$$.next(true);
+    // this.isLoggedIn$$.next(true);
+    this.isLoggedIn = true;
     this.setToken(loginData);
     this.setUserName(loginData.login);
     this.router.navigate(['main']);
@@ -22,16 +28,17 @@ export class LoginService {
 
   public logout() {
     this.deleteToken();
-    this.isLoggedIn$$.next(false);
+    this.isLoggedIn = false;
     this.userName = '';
     this.router.navigate(['login']);
   }
 
-  public checkLogin() {
+  private initLogin(): boolean {
     if (localStorage.getItem('token')) {
-      this.isLoggedIn$$.next(true);
       this.setUserName();
+      return true;
     }
+    return false;
   }
 
   private setUserName(login?: string) {
@@ -49,6 +56,4 @@ export class LoginService {
   private deleteToken() {
     localStorage.removeItem('token');
   }
-
-  constructor(private router: Router) {}
 }

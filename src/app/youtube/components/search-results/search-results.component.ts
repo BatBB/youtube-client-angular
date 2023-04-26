@@ -11,13 +11,13 @@ import { SearchService } from '../../services/search.service';
 export class SearchResultsComponent {
   public videos$ = this.searchService.videos$;
 
-  // eslint-disable-next-line class-methods-use-this
-  trackByFn(index: number, item: VideoItem) {
-    return item.id;
-  }
-
   constructor(
     public searchService: SearchService,
     public filterService: FilterService
   ) {}
+
+  // eslint-disable-next-line class-methods-use-this
+  public trackByFn(index: number, item: VideoItem) {
+    return item.id;
+  }
 }

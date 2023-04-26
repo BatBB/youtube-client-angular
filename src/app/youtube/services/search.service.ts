@@ -20,12 +20,15 @@ import { VideosResponse } from '../models/videos-response';
 export class SearchService {
   private videos$$ = new BehaviorSubject<VideoItem[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   public videos$ = this.videos$$.asObservable();
+
+  constructor(private http: HttpClient) {}
 
   public getVideos(searchKey: string): Observable<VideosResponse> {
     return this.getVideosResponse(searchKey).pipe(
-      map((resp) => resp.items.map((video) => video.id.videoId).join(',')),
-      switchMap((ids) => this.getVideoResponse(ids)),
+      map(({ items }) => items.map(({ id }) => id.videoId).join(',')),
+      switchMap((ids) => this.getVideoByIdResponse(ids)),
       tap((resp) => this.videos$$.next(resp.items))
     );
   }
@@ -40,13 +43,14 @@ export class SearchService {
     return this.http.get<SearchResponse>('search', { params }).pipe(
       retry(4),
       catchError((err) => {
+        // eslint-disable-next-line no-console
         console.log('Error:', err);
         return EMPTY;
       })
     );
   }
 
-  private getVideoResponse(ids: string): Observable<VideosResponse> {
+  private getVideoByIdResponse(ids: string): Observable<VideosResponse> {
     const params = new HttpParams()
       .set('id', ids)
       .set('part', 'snippet,statistics');
@@ -54,11 +58,10 @@ export class SearchService {
     return this.http.get<VideosResponse>('videos', { params }).pipe(
       retry(4),
       catchError((err) => {
+        // eslint-disable-next-line no-console
         console.log('Error:', err);
         return EMPTY;
       })
     );
   }
-
-  constructor(private http: HttpClient) {}
 }

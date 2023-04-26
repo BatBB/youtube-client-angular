@@ -1,9 +1,9 @@
-import { Id, Snippet, Statistics } from './types.type';
+import { Id, Snippet, Statistics } from './youtube-response';
 
-export interface SearchItem {
+export type SearchItem = {
   kind: string;
   etag: string;
   id: Id;
   snippet: Snippet;
   statistics: Statistics;
-}
+};
