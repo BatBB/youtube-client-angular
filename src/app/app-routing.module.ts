@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [authGuard],
+    canMatch: [authGuard],
   },
   {
     path: 'error404',

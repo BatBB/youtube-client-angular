@@ -19,17 +19,16 @@ export class LoginService {
   constructor(private router: Router) {}
 
   public login(loginData: LoginData) {
-    // this.isLoggedIn$$.next(true);
-    this.isLoggedIn = true;
     this.setToken(loginData);
     this.setUserName(loginData.login);
+    this.isLoggedIn = true;
     this.router.navigate(['main']);
   }
 
   public logout() {
     this.deleteToken();
-    this.isLoggedIn = false;
     this.userName = '';
+    this.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 

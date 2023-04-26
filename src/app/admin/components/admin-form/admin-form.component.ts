@@ -12,15 +12,11 @@ import { AdminData } from '../../models/admin-data.model';
 export class AdminFormComponent implements OnInit {
   adminForm!: FormGroup<FormType<AdminData>>;
 
-  maxDate!: string;
+  maxDate = new Date();
 
-  onSubmit() {
-    this.router.navigate(['/main']);
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.maxDate = new Date().toISOString().slice(0, 10);
-
     this.adminForm = new FormGroup({
       title: new FormControl('', {
         nonNullable: true,
@@ -56,5 +52,7 @@ export class AdminFormComponent implements OnInit {
     });
   }
 
-  constructor(private router: Router) {}
+  onSubmit() {
+    this.router.navigate(['/main']);
+  }
 }
