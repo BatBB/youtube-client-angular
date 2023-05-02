@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FilterService } from 'src/app/core/services/filter.service';
 import { Store } from '@ngrx/store';
 import { selectYoutubeVideos } from 'src/app/store/selectors/youtube-data.selector';
-import { selectGetCustomCards } from 'src/app/store/selectors/custom-cards.selector';
+import { selectCustomCards } from 'src/app/store/selectors/custom-cards.selector';
 import { CustomCard } from 'src/app/admin/models/custom-card.model';
 import { VideoItem } from '../../models/video-item';
 
@@ -14,7 +14,7 @@ import { VideoItem } from '../../models/video-item';
 export class SearchResultsComponent {
   videos$ = this.store.select(selectYoutubeVideos);
 
-  cards$ = this.store.select(selectGetCustomCards);
+  cards$ = this.store.select(selectCustomCards);
 
   constructor(public filterService: FilterService, private store: Store) {}
 

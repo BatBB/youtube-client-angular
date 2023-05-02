@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 // import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LoginData } from '../models/login-data';
 
 @Injectable({
@@ -9,26 +10,26 @@ import { LoginData } from '../models/login-data';
 export class LoginService {
   userName = '';
 
-  isLoggedIn = this.initLogin();
+  // isLoggedIn = this.initLogin();
 
-  // private isLoggedIn$$ = new BehaviorSubject<boolean>(false);
+  private isLoggedIn$$ = new BehaviorSubject<boolean>(this.initLogin());
 
-  // // eslint-disable-next-line @typescript-eslint/member-ordering
-  // public isLoggedIn$ = this.isLoggedIn$$.asObservable();
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  public isLoggedIn$ = this.isLoggedIn$$.asObservable();
 
   constructor(private router: Router) {}
 
   public login(loginData: LoginData) {
     this.setToken(loginData);
     this.setUserName(loginData.login);
-    this.isLoggedIn = true;
+    this.isLoggedIn$$.next(true);
     this.router.navigate(['main']);
   }
 
   public logout() {
     this.deleteToken();
     this.userName = '';
-    this.isLoggedIn = false;
+    this.isLoggedIn$$.next(false);
     this.router.navigate(['login']);
   }
 

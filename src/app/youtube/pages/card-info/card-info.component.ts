@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { CustomCard } from 'src/app/admin/models/custom-card.model';
-import { selectGetCustomCards } from 'src/app/store/selectors/custom-cards.selector';
+import { selectCustomCards } from 'src/app/store/selectors/custom-cards.selector';
 
 @Component({
   selector: 'app-card-info',
@@ -12,11 +12,18 @@ import { selectGetCustomCards } from 'src/app/store/selectors/custom-cards.selec
   styleUrls: ['./card-info.component.scss'],
 })
 export class CardInfoComponent implements OnInit, OnDestroy {
-  cards$ = this.store.select(selectGetCustomCards);
+  cards$ = this.store.select(selectCustomCards);
 
   public card: Required<CustomCard> | null = null;
 
   private subscription!: Subscription;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
     this.getVideo();
@@ -42,11 +49,4 @@ export class CardInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location,
-    private store: Store
-  ) {}
 }

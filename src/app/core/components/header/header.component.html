@@ -5,7 +5,7 @@
         <a
           mat-raised-button
           color="primary"
-          *ngIf="loginService.isLoggedIn"
+          *ngIf="isLoggedIn"
           [routerLink]="['/admin']"
           routerLinkActive="router-link-active"
         >
@@ -45,10 +45,7 @@
       </div>
       <div class="right-container">
         <div class="user">
-          <span
-            class="user-info"
-            *ngIf="loginService.isLoggedIn; else loginBtn"
-          >
+          <span class="user-info" *ngIf="isLoggedIn; else loginBtn">
             {{ this.loginService.userName }}
             <img
               src="./assets/icons/login.svg"

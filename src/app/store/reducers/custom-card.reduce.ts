@@ -13,7 +13,7 @@ const initialState: CustomCardsState = {
 export const customCardsReducers = createReducer(
   initialState,
   on(
-    CustomCardsActions.getCustomCards,
+    CustomCardsActions.replaceCustomCards,
     (state, action): CustomCardsState => ({
       ...state,
       cards: action.cards,

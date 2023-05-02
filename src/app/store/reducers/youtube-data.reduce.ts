@@ -28,6 +28,7 @@ export const youtubeReducers = createReducer(
     (state, action): YoutubeState => ({
       ...state,
       videos: action.videos,
+      error: null,
     })
   ),
   on(

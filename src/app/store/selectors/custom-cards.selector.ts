@@ -4,7 +4,7 @@ import { CustomCardsState } from '../reducers/custom-card.reduce';
 export const selectFeature =
   createFeatureSelector<CustomCardsState>('customCards');
 
-export const selectGetCustomCards = createSelector(
+export const selectCustomCards = createSelector(
   selectFeature,
   (state) => state.cards
 );
