@@ -6,6 +6,8 @@ import {
   Subscription,
   debounceTime,
   distinctUntilChanged,
+  filter,
+  take,
 } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { FilterService } from '../../services/filter.service';
@@ -22,23 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private searchInputValue$ = new Subject<string>();
 
-  ngOnInit(): void {
-    this.loginService.checkLogin();
-    this.searchInputValue$
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((val) => {
-        this.store.dispatch(YoutubeActions.searchKey({ searchKey: val }));
-      });
-  }
-
-  public search(value: string) {
-    if (value.length > 2) this.searchInputValue$.next(value);
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
-  }
-
   constructor(
     public headerService: HeaderService,
     public filterService: FilterService,
@@ -46,4 +31,35 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public searchService: SearchService,
     private store: Store
   ) {}
+
+  ngOnInit(): void {
+    this.searchInputValue$
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        filter((val) => val.length > 2),
+        take(1)
+      )
+      .subscribe((value) => {
+        this.store.dispatch(YoutubeActions.searchKey({ searchKey: value }));
+      });
+  }
+
+  public search(value: string) {
+    this.searchInputValue$.next(value);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
+  // ngOnInit(): void {
+  //   this.subscription = this.searchInputValue$
+  //     .pipe(
+  //       debounceTime(500),
+  //       distinctUntilChanged(),
+  //       filter((val) => val.length > 2),
+  //       switchMap((val) => this.searchService.getVideos(val))
+  //     )
+  //     .subscribe();
+  // }
 }

@@ -14,20 +14,11 @@ import * as CustomCardsActions from '../../../store/actions/custom-cards.actions
 export class AdminFormComponent implements OnInit {
   adminForm!: FormGroup<FormType<CustomCard>>;
 
-  maxDate!: string;
+  maxDate = new Date();
 
-  onSubmit() {
-    this.store.dispatch(
-      CustomCardsActions.setCustomCard({
-        card: <CustomCard>this.adminForm.value,
-      })
-    );
-    this.router.navigate(['/main']);
-  }
+  constructor(private router: Router, private store: Store) {}
 
   ngOnInit(): void {
-    this.maxDate = new Date().toISOString().slice(0, 10);
-
     this.adminForm = new FormGroup({
       title: new FormControl('', {
         nonNullable: true,
@@ -59,5 +50,12 @@ export class AdminFormComponent implements OnInit {
     });
   }
 
-  constructor(private router: Router, private store: Store) {}
+  public onSubmit() {
+    this.store.dispatch(
+      CustomCardsActions.setCustomCard({
+        card: <CustomCard>this.adminForm.value,
+      })
+    );
+    this.router.navigate(['/main']);
+  }
 }

@@ -2,11 +2,11 @@
   <div class="cards" *ngIf="videos$ | async as videos">
     <app-search-item
       *ngFor="
-        let item of videos
+        let item of (videos$ | async)!
           | filter : this.filterService.filterKey
           | sort
             : this.filterService.sortData.sortBy
-            : this.filterService.sortData.isAsc;
+            : this.filterService.sortData.order;
         trackBy: trackByFn
       "
       [cardItem]="item"

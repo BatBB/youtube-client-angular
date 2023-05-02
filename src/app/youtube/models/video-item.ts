@@ -1,9 +1,9 @@
-import { Snippet, Statistics } from './types.type';
+import { Snippet, Statistics } from './youtube-response';
 
-export interface VideoItem {
+export type VideoItem = {
   kind: string;
   etag: string;
   id: string;
   snippet: Snippet;
   statistics: Statistics;
-}
+};

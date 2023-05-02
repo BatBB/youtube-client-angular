@@ -5,8 +5,8 @@ import {
   emailValidator,
   passwordValidator,
 } from 'src/app/shared/services/validators';
-import { LoginService } from '../../services/login.service';
 import { LoginData } from '../../models/login-data';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -15,6 +15,8 @@ import { LoginData } from '../../models/login-data';
 })
 export class LoginFormComponent implements OnInit {
   formGroup!: FormGroup<FormType<LoginData>>;
+
+  constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -36,6 +38,4 @@ export class LoginFormComponent implements OnInit {
   submitLogin() {
     this.loginService.login(this.formGroup.getRawValue());
   }
-
-  constructor(public loginService: LoginService) {}
 }

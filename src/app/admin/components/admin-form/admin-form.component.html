@@ -25,20 +25,23 @@
       <mat-label>Link image</mat-label>
       <input matInput formControlName="linkImage" />
       <mat-error *ngIf="adminForm.controls.linkImage.hasError('required')">
-        Please enter a link to the image
+        Please enter a link to the image (must have extension jpg, jpeg, png,
+        webp, avif, gif)
       </mat-error>
       <mat-error *ngIf="adminForm.controls.linkImage.hasError('pattern')">
-        The image link is invalid
+        The image link is invalid (must have extension jpg, jpeg, png, webp,
+        avif, gif)
       </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Link video</mat-label>
       <input matInput formControlName="linkVideo" />
       <mat-error *ngIf="adminForm.controls.linkVideo.hasError('required')">
-        Please enter a link to the video
+        Please enter a link to the video (must have extension mov, mp4, avi,
+        mpeg, mkv)
       </mat-error>
       <mat-error *ngIf="adminForm.controls.linkVideo.hasError('pattern')">
-        The video link is invalid
+        The video link is invalid (must have extension mov, mp4, avi, mpeg, mkv)
       </mat-error>
     </mat-form-field>
     <div class="admin-form__bottom">

@@ -9,10 +9,12 @@ import { VideosResponse } from '../models/videos-response';
   providedIn: 'root',
 })
 export class SearchService {
+  constructor(private http: HttpClient, private store: Store) {}
+
   public getVideos(searchKey: string): Observable<VideosResponse> {
     return this.getVideosResponse(searchKey).pipe(
-      map((resp) => resp.items.map((video) => video.id.videoId).join(',')),
-      switchMap((ids) => this.getVideoResponse(ids))
+      map(({ items }) => items.map(({ id }) => id.videoId).join(',')),
+      switchMap((ids) => this.getVideoByIdResponse(ids))
     );
   }
 
@@ -26,13 +28,14 @@ export class SearchService {
     return this.http.get<SearchResponse>('search', { params }).pipe(
       retry(4),
       catchError((err) => {
+        // eslint-disable-next-line no-console
         console.log('Error:', err);
         return EMPTY;
       })
     );
   }
 
-  private getVideoResponse(ids: string): Observable<VideosResponse> {
+  private getVideoByIdResponse(ids: string): Observable<VideosResponse> {
     const params = new HttpParams()
       .set('id', ids)
       .set('part', 'snippet,statistics');
@@ -40,11 +43,10 @@ export class SearchService {
     return this.http.get<VideosResponse>('videos', { params }).pipe(
       retry(4),
       catchError((err) => {
+        // eslint-disable-next-line no-console
         console.log('Error:', err);
         return EMPTY;
       })
     );
   }
-
-  constructor(private http: HttpClient, private store: Store) {}
 }

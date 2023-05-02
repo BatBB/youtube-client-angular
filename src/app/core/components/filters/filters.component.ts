@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Sort } from 'src/app/youtube/models/sort';
+import { Sort, SortOrder } from 'src/app/youtube/models/sort';
 
 @Component({
   selector: 'app-filters',
@@ -11,18 +11,19 @@ export class FiltersComponent {
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter<Sort>();
 
-  getFilterKey(filterKey: string) {
+  order: SortOrder = 'none';
+
+  public getFilterKey(filterKey: string) {
     this.filter.emit(filterKey);
   }
 
-  isAsc = true;
-
-  changeSort(sortBy: string) {
+  public changeSort(sortBy: string) {
+    this.order =
+      this.order === 'none' || this.order === 'desc' ? 'asc' : 'desc';
     const sortData: Sort = {
       sortBy,
-      isAsc: this.isAsc,
+      order: this.order,
     };
     this.sort.emit(sortData);
-    this.isAsc = !this.isAsc;
   }
 }

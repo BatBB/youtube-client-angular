@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { switchMap, Subscription, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectYoutubeVideos } from 'src/app/store/selectors/youtube-data.selector';
 import { VideoItem } from '../../models/video-item';
@@ -18,21 +18,30 @@ export class VideoInfoPageComponent implements OnInit, OnDestroy {
 
   private subscription!: Subscription;
 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+    private store: Store
+  ) {}
+
   ngOnInit(): void {
     this.getVideo();
   }
 
   public getVideo(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id === null) return;
-
-    this.subscription = this.videos$.subscribe((videos) => {
-      this.video = videos.find((video) => video.id === id) || null;
-    });
-
-    if (!this.video) {
-      this.router.navigate(['error404']);
-    }
+    this.subscription = this.route.paramMap
+      .pipe(
+        switchMap((params: ParamMap) =>
+          this.videos$.pipe(
+            map((videos) => videos.find(({ id }) => id === params.get('id')))
+          )
+        )
+      )
+      .subscribe((video) => {
+        if (video === undefined) this.gotoErrorPage();
+        else this.video = video;
+      });
   }
 
   public back() {
@@ -43,10 +52,8 @@ export class VideoInfoPageComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location,
-    private store: Store
-  ) {}
+  private gotoErrorPage() {
+    this.subscription.unsubscribe();
+    this.router.navigate(['error404']);
+  }
 }

@@ -1,9 +1,9 @@
-import { PageInfo } from './types.type';
+import { PageInfo } from './youtube-response';
 import { VideoItem } from './video-item';
 
-export interface VideosResponse {
+export type VideosResponse = {
   kind: string;
   etag: string;
   items: VideoItem[];
   pageInfo: PageInfo;
-}
+};

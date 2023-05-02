@@ -16,10 +16,10 @@ export class SearchResultsComponent {
 
   cards$ = this.store.select(selectGetCustomCards);
 
+  constructor(public filterService: FilterService, private store: Store) {}
+
   // eslint-disable-next-line class-methods-use-this
-  trackByFn(index: number, item: VideoItem | CustomCard) {
+  public trackByFn(_index: number, item: VideoItem | CustomCard) {
     return item.id;
   }
-
-  constructor(public filterService: FilterService, private store: Store) {}
 }
